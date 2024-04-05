@@ -16,13 +16,14 @@ public class CrawlerServiceImpl implements CrawlerService{
 
     @Override
     public Map<String, ?> findNamesFromWebMelon(Map<String, String> paramMap) throws IOException {
-        return repository.saveMelon(paramMap);
+        // return repository.saveMelon(paramMap);
+        return null;
     }
 
     @Override
     public Map<String,?> findNamesFromWebBugs(Map<String,String> paramMap) throws IOException {
 
-        return repository.saveBugs(paramMap);
-
+        // return repository.saveBugs(paramMap);
+        return null;
     }
 }

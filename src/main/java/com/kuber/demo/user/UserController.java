@@ -1,128 +1,200 @@
-package com.kuber.demo.user;
+// package com.kuber.demo.user;
 
-import com.kuber.demo.enums.Messenger;
-import com.kuber.demo.proxy.TypeProxy;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+// import com.kuber.demo.article.model.Article;
+// import com.kuber.demo.article.model.ArticleDto;
+// import com.kuber.demo.common.component.MessengerVo;
+// import com.kuber.demo.user.model.User;
+// import com.kuber.demo.user.model.UserDto;
+// import com.kuber.demo.user.service.UserServiceImpl;
 
-import java.sql.SQLException;
-import java.util.*;
+// import io.swagger.v3.oas.annotations.Operation;
+// import io.swagger.v3.oas.annotations.responses.ApiResponse;
+// import io.swagger.v3.oas.annotations.responses.ApiResponses;
+// import lombok.RequiredArgsConstructor;
+// import lombok.extern.slf4j.Slf4j;
 
-@RestController
-@RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
-public class UserController {
-    private final UserService service;
-    private final UserRepository repository;
+// import org.springdoc.core.converters.models.Pageable;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.*;
 
-    @PostMapping("/api/login")
-    public Map<String, ?> login(@RequestBody Map<?, ?> paramap) {
-        Map<String, Messenger> response = new HashMap<>();
-        String username = (String)paramap.get("username");
+// import java.sql.SQLException;
+// import java.util.*;
 
-        User user = repository.findByUsername(username).orElse(null);
+// @ApiResponses(value = {
+// @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+// @ApiResponse(responseCode = "404", description = "Customer not found") })
 
-         response.put("로그인성공여부" , user==null ?
-                 Messenger.FAIL : user.getPassword().equals(paramap.get("password")) ?
-                 Messenger.SUCCESS : Messenger.WRONG_PASSWORD);
+// @CrossOrigin(origins = "*", allowedHeaders = "*")
+// @RestController
+// @RequiredArgsConstructor
+// // @NoArgsConstructor
+// @RequestMapping(path = "/api/users")
+// @Slf4j
+// public class UserController {
 
-        return response;
-    }   
+// private final UserServiceImpl serImpl;
 
-    @PostMapping(path = "/api/users")
-    public Map<String, ?> join(@RequestBody Map<String, ?> paramap) {
-        System.out.println("입력받은 아이디 : " + paramap.get("username"));
+// // ----------------------------------------------------------------
+// // @Operation(summary = "test", description = "회원 정보가 삭제됩니다.", tags = {
+// "Member
+// // Controller" })
+// @PostMapping("")
+// public ResponseEntity<MessengerVo> save(@RequestBody Map<String, UserDto>
+// param) {
+// log.info("입력받은 정보 : {}", param);
+// // User newUser = service.save(param);
+// return ResponseEntity.ok(new MessengerVo());
+// }
 
-        User user = repository.save(User.builder()
-                .username((String) paramap.get("username"))
-                .password((String) paramap.get("password"))
-                .name((String) paramap.get("name"))
-                .job((String) paramap.get("job"))
-                .phone((String) paramap.get("phone"))
-                .height(TypeProxy.doubleOf.apply((String)paramap.get("height")))
-                .weight(TypeProxy.doubleOf.apply((String)paramap.get("weight")))
-                .build());
+// // ---------------------------- command-setter ------------------------
 
-        System.out.println("DB에 저장된 User 정보 : " + user);
-        Map<String, Messenger> map = new HashMap<>();
-        map.put("result", Messenger.SUCCESS);
+// // ---------------------------- Query-getter ------------------------
+// // @Operation(summary = "회원 로그인 요청", description = "로그인됩니다.", tags = { "User
+// // Controller" })
+// @GetMapping("/login")
+// public ResponseEntity<MessengerVo> login(@RequestBody Map<?, ?> paramap) {
+// Map<String, MessengerVo> response = new HashMap<>();
 
-        return map;
-    }
+// String username = (String) paramap.get("username");
 
+// List<UserDto> user = serImpl.findUsersByName(username);
 
-    public Map<String, ?> findUserBYId(@RequestBody Map<?, ?> paramap) {
-        Map<String, String> response = new HashMap<>();
+// // response.put("로그인성공여부", user == null ? Messenger.FAIL
+// // : user.getPassword().equals(paramap.get("password")) ? Messenger.SUCCESS :
+// // Messenger.WRONG_PASSWORD);
 
-        return response;
-    }
+// log.info("{}", user);
+// return ResponseEntity.ok(new MessengerVo());
+// }
 
-    public Map<String, ?> addUsers() {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// @PostMapping("/join")
+// public Map<String, ?> join(@RequestBody Map<String, ?> paramap) {
+// log.info("입력받은 아이디 : {}", paramap.get("username"));
 
+// UserDto user = serImpl.save(UserDto.builder()
+// .username((String) paramap.get("username"))
+// .password((String) paramap.get("password"))
+// .name((String) paramap.get("name"))
+// .job((String) paramap.get("job"))
+// .phone((String) paramap.get("phone"))
+// .build());
 
-    public Map<String, ?> updatePassword(@RequestBody Map<?, ?> paramap) {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// log.info("DB에 저장된 User 정보 : {}", user);
+// // log.info("DB에 저장된 User 정보 : {없음}");
+// Map<String, String> map = new HashMap<>();
+// // map.put("result", Messenger.SUCCESS);
+// map.put("result", "성공");
 
-    public Map<String, ?> deleteUser(@RequestBody Map<?, ?> paramap) {
-        Map<String, String> response = new HashMap<>();
+// return map;
+// }
 
-        return response;
-    }
+// @GetMapping("/all-users")
+// public ResponseEntity<List<UserDto>> findAll(Pageable pageable) {
+// Map<String, Object> resMap = new HashMap<>();
 
-    public Map<String, ?> getUserList() {
-        Map<String, String> response = new HashMap<>();
+// // @SuppressWarnings("unchecked")
+// // List<User> list = List.of(User.builder()
+// // .id(0L)
+// // .username("idid")
+// // .password("password")
+// // .name("name")
+// // .phone("phone")
+// // .job("ob")
+// // .build());
 
-        return response;
-    }
+// List<UserDto> list = serImpl.findAll();
 
-    public Map<String, ?> findUserByName(@RequestBody Map<?, ?> paramap) {
-        Map<String, String> response = new HashMap<>();
-        return response;
+// if (list.isEmpty()) {
+// // resMap.put("message", Messenger.FAIL);
+// resMap.put("message", "FAIL");
+// } else {
+// // resMap.put("message", Messenger.SUCCESS);
+// resMap.put("message", "SUCCESS");
+// resMap.put("result", list);
+// log.info("리스트 사이즈 : {} ", list.size());
+// }
+// return ResponseEntity.ok(new ArrayList<UserDto>());
+// }
 
-    }
+// @GetMapping("/{id}") // {id}와 @PathVariable Long id의 값은 같아야 함
+// public ResponseEntity<Optional<UserDto>> findUserById(@PathVariable Long id)
+// {
+// Map<String, String> response = new HashMap<>();
 
+// return ResponseEntity.ok(Optional.of(new UserDto()));
+// }
 
-    public Map<String, ?> findUserByJob(@RequestBody Map<?, ?> paramap) {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// @PutMapping("/updatePassword")
+// public Map<String, ?> updatePassword(@RequestBody Map<?, ?> paramap) {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
 
-    public Map<String, ?> countUser() {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// @PutMapping("/deleteUser")
+// public Map<String, ?> deleteUser(@RequestBody Map<?, ?> paramap) {
+// Map<String, String> response = new HashMap<>();
 
-    public Map<String, ?> getOne(@RequestBody Map<?, ?> paramap) throws SQLException {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// return response;
+// }
 
-    public Map<String, ?> findUsers() throws SQLException {
-        Map<String, String> response = new HashMap<>();
+// @PutMapping("/getUserList")
+// public Map<String, ?> getUserList() {
+// Map<String, String> response = new HashMap<>();
 
-        return response;
-    }
+// return response;
+// }
 
-    public Map<String, ?> getUser(@RequestBody Map<?, ?> paramap) throws SQLException {
-        Map<String, String> response = new HashMap<>();
+// @PutMapping("/findUserByName")
+// public Map<String, ?> findUserByName(@RequestBody Map<?, ?> paramap) {
+// Map<String, String> response = new HashMap<>();
+// return response;
 
-        return response;
-    }
+// }
 
-    public Map<String, ?> touchTable() throws SQLException {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// @PutMapping("/findUserByJob")
+// public Map<String, ?> findUserByJob(@RequestBody Map<?, ?> paramap) {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
 
-    public Map<String, ?> removeTable() throws SQLException {
-        Map<String, String> response = new HashMap<>();
-        return response;
-    }
+// @PutMapping("/countUser")
+// public Map<String, ?> countUser() {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
 
+// @PutMapping("/getOne")
+// public Map<String, ?> getOne(@RequestBody Map<?, ?> paramap) throws
+// SQLException {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
 
-}
+// @PutMapping("/findUsers")
+// public Map<String, ?> findUsers() throws SQLException {
+// Map<String, String> response = new HashMap<>();
+
+// return response;
+// }
+
+// @PutMapping("/getUser")
+// public Map<String, ?> getUser(@RequestBody Map<?, ?> paramap) throws
+// SQLException {
+// Map<String, String> response = new HashMap<>();
+
+// return response;
+// }
+
+// @PutMapping("/touchTable")
+// public Map<String, ?> touchTable() throws SQLException {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
+
+// @PutMapping("/removeTable")
+// public Map<String, ?> removeTable() throws SQLException {
+// Map<String, String> response = new HashMap<>();
+// return response;
+// }
+
+// }
