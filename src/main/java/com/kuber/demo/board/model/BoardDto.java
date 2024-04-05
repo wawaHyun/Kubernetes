@@ -15,13 +15,13 @@ import java.util.*;
 @Component
 @Builder
 @Data
-// @NoArgsConstructor
-// @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class BoardDto {
 
-    // private Long id;
-    // private String boardName;
-    // private String boardType;
-    // // private List<Article> articles = new ArrayList<>();
+    private Long id;
+    private String boardName;
+    private String boardType;
+    private List<Article> articles = new ArrayList<>();
 
 }

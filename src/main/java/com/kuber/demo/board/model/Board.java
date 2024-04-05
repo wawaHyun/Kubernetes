@@ -25,17 +25,7 @@ public class Board extends BaseEntity {
     @Column(name = "board_type2")
     private String boardType2;
 
-    // @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    // private List<Article> articles;
-
-    // @Builder(builderClassName = "builer")
-    // public Board(long id, String boardName, String boardType
-    // // ,List<Article> articles
-    // ) {
-    // this.id = id;
-    // this.boardName = boardName;
-    // this.boardType = boardType;
-    // // this.articles = articles;
-    // }
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    private List<Article> articles;
 
 }
