@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAll(PageRequestVo vo) throws SQLException {
+    public List<UserDto> findAll(PageRequestVo vo) {
         List<UserDto> list = new ArrayList<>();
         list.add((UserDto) repo.findAll());
         return list;

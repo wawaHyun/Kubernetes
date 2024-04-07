@@ -12,14 +12,14 @@ public class UtilServiceImpl implements UtilService {
     }
 
     @Override
-    public int createRandomInteger(int start, int gapBetweenStartAndEnd) {
+    public int createRandomInteger(int start, int end) {
         // 0 이상 50 미만의 값을 생성하고 150을 더해줌으로써 키의 범위를 150 이상 200 미만으로 만듦
-        return start + (int) (Math.random() * gapBetweenStartAndEnd);
+        return start + (int) (Math.random() * end);
     }
 
     @Override
-    public double createRandomDouble(int start, int gapBetweenStartAndEnd) {
-        return (Math.round((start + Math.random() * gapBetweenStartAndEnd) * 10) / 10.0);
+    public double createRandomDouble(double start, double end) {
+        return (Math.round((start + Math.random() * end) * 10) / 10.0);
     }
 
     @Override

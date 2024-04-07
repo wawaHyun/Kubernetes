@@ -1,11 +1,12 @@
 package com.kuber.demo.common.component;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
-
-import lombok.*;
 
 @Component
 @Getter
@@ -19,11 +20,12 @@ public class PageRequestVo {
 
     public PageRequestVo() {
         this.page = 1;
-        this.size = 9;
+        this.size = 10;
     }
 
-    public Pageable getPageable(Sort sort) {
-        return PageRequest.of(page - 1, size, sort);
+    public Pageable getPageable(Sort sort){
+        return PageRequest.of(page -1,size,sort);
     }
+
 
 }

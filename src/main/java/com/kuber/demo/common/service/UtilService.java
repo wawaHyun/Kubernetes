@@ -1,9 +1,10 @@
 package com.kuber.demo.common.service;
 
 public interface UtilService {
-    int createRandomInteger(int start, int gapBetweenStartAndEnd);
 
-    double createRandomDouble(int start, int gapBetweenStartAndEnd);
+    int createRandomInteger (int start, int end);
+
+    double createRandomDouble (double start, double end);
 
     String createRandomName();
 
@@ -12,9 +13,8 @@ public interface UtilService {
     String createRandomContent();
 
     String createRandomCompany();
-
+    
     String createRandomJob();
 
     String createRandomUsername();
-
 }

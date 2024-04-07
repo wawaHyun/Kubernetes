@@ -1,13 +1,10 @@
 package com.kuber.demo.user.service;
 
-import com.kuber.demo.board.model.BoardDto;
-import com.kuber.demo.common.component.PageRequestVo;
 import com.kuber.demo.common.service.CommandService;
 import com.kuber.demo.common.service.QueryService;
 import com.kuber.demo.user.model.User;
 import com.kuber.demo.user.model.UserDto;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public interface UserService extends CommandService<UserDto>, QueryService<UserDto> {

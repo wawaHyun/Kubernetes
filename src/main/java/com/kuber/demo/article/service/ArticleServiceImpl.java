@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleDto> findAll(PageRequestVo vo) throws SQLException {
+    public List<ArticleDto> findAll(PageRequestVo vo)  {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }

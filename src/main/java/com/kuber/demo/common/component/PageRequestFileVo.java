@@ -1,5 +1,7 @@
 package com.kuber.demo.common.component;
 
+import lombok.*;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -7,16 +9,14 @@ import org.springframework.stereotype.Component;
 
 import com.kuber.demo.article.model.ArticleDto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import java.util.List;
 
 @Component
+@Getter
 @Builder
-@Data
 @AllArgsConstructor
 public class PageRequestFileVo {
+
     private int page;
     private int size;
     private String type;
@@ -24,13 +24,13 @@ public class PageRequestFileVo {
 
     private List<ArticleDto> pageFileDto;
 
-    public PageRequestFileVo() {
-        this.page = 1;
+    public PageRequestFileVo( ) {
+        this.page =1;
         this.size = 10;
     }
-
-    public Pageable getPageable(Sort sort) {
-        return PageRequest.of(page - 1, size, sort);
+    public Pageable getPageable(Sort sort){
+        return PageRequest.of(page -1, size, sort);
     }
 
 }
+
