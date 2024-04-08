@@ -10,8 +10,8 @@ spring:
     init:
       platform: mysql
       mode: always
-   
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
     properties:
@@ -19,8 +19,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         jdbc:
           lob:
-            '[non_contextual_creation]': true
-        '[format_sql]': true
+            "[non_contextual_creation]": true
+        "[format_sql]": true
     show-sql: true
 logging:
   level:
@@ -28,18 +28,3 @@ logging:
       hibernate:
         SQL: debug
         type: trace
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    groups-order: DESC
-    operationsSorter: method
-    disable-swagger-default-url: true
-    display-request-duration: true
-  api-docs:
-    path: /api-docs
-  show-actuator: true
-  default-consumes-media-type: application/json
-  default-produces-media-type: application/json
-  paths-to-match:
-    - /v1/**

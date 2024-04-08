@@ -14,6 +14,7 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .registerDate(dto.getRegisterDate())
+                // .writer((String) dto.getWriterId())
                 .build();
 
         // boradId로 db를 조회해서 해당 게시판에 게시된 글의 목 private String title;
@@ -26,16 +27,15 @@ public interface ArticleService extends CommandService<ArticleDto>, QueryService
                 .title(ent.getTitle())
                 .content(ent.getContent())
                 .registerDate(ent.getRegisterDate())
+                // .writer((Long) ent.getWriter())
                 .build();
 
         return Optional.of(dto);
     }
 
-
-    //--------------------------------------------------------------------
+    // --------------------------------------------------------------------
     // command
 
     // query
 
-    
 }

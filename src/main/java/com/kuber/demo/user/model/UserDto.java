@@ -22,4 +22,5 @@ public class UserDto {
     private Long address;
     private String job;
     private List<Article> article = new ArrayList<>();
+
 }

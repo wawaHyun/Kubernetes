@@ -12,7 +12,8 @@ import com.kuber.demo.user.model.UserDto;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
     void deleteAllById(Long id);
+
+    List<UserDto> findUsersByName(String name);
 
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.kuber.demo.article.model.Article;
 import com.kuber.demo.board.model.Board;
-import com.kuber.demo.common.component.MessengerVo;
+import com.kuber.demo.common.component.Messenger;
 import com.kuber.demo.common.component.PageRequestVo;
 
 @Service

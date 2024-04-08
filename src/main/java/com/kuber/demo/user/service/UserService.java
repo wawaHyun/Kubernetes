@@ -1,5 +1,6 @@
 package com.kuber.demo.user.service;
 
+import com.kuber.demo.common.component.Messenger;
 import com.kuber.demo.common.service.CommandService;
 import com.kuber.demo.common.service.QueryService;
 import com.kuber.demo.user.model.User;
@@ -9,13 +10,14 @@ import java.util.*;
 
 public interface UserService extends CommandService<UserDto>, QueryService<UserDto> {
 
-    String updatePassword(User user);
     List<UserDto> findUsersByName(String name);
+
     List<UserDto> findUsersByJob(String job);
 
+    Messenger login(UserDto param);
 
-    default User dtoToEntity (UserDto dto) {
-     return User.builder()
+    default User dtoToEntity(UserDto dto) {
+        return User.builder()
                 .username(dto.getUsername())
                 .password(dto.getPassword())
                 .name(dto.getName())
@@ -26,18 +28,14 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
         // boradId로 db를 조회해서 해당 게시판에 게시된 글의 목록을 가져올 경우
     }
 
-    default UserDto entityToDto(Optional<User> optional) {
+    default UserDto entityToDto(User user) {
         return UserDto.builder()
-                .username(optional.get().getUsername())
-                .password(optional.get().getPassword())
-                .name(optional.get().getName())
-                .phone(optional.get().getPhone())
-                .job(optional.get().getJob())
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .name(user.getName())
+                .phone(user.getPhone())
+                .job(user.getJob())
                 .build();
     }
 
-    //--------------------------------------------------------------------
-    // command-setter
-
-    // query-getter
 }

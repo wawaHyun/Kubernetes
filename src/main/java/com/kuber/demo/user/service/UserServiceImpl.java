@@ -3,12 +3,12 @@ package com.kuber.demo.user.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.kuber.demo.common.component.PageRequestVo;
+import com.kuber.demo.common.component.Messenger;
 import com.kuber.demo.user.model.User;
 import com.kuber.demo.user.model.UserDto;
 import com.kuber.demo.user.repository.UserRepository;
@@ -21,31 +21,43 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repo;
 
     @Override
-    public UserDto save(UserDto t) {
-        log.info("{}", t);
-        return entityToDto(Optional.ofNullable(repo.save(dtoToEntity(t))));
+    public Messenger save(UserDto user) {
+        entityToDto((repo.save(dtoToEntity(user))));
+        return Messenger.builder()
+                .message("join succes")
+                .build();
     }
 
     @Override
-    public void deleteById(Long id) {
-        repo.deleteAllById(id);
-    }
-
-    @Override
-    public List<UserDto> findAll(PageRequestVo vo) {
-        List<UserDto> list = new ArrayList<>();
-        list.add((UserDto) repo.findAll());
+    public List<UserDto> findAll() {
+        List<UserDto> list = repo.findAll().stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
         return list;
     }
 
     @Override
+    public Messenger deleteById(Long id) {
+        repo.deleteById(id);
+        return Messenger.builder()
+                .message("delete succes")
+                .build();
+    }
+
+    @Override
+    public Messenger modify(UserDto t) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    }
+
+    @Override
     public Optional<UserDto> findById(Long id) {
-        return Optional.ofNullable(entityToDto(repo.findById(id)));
+        return Optional.ofNullable(entityToDto(repo.findById(id).orElse(null)));
     }
 
     @Override
     public Long count() {
-        return null;
+        return repo.count();
     }
 
     @Override
@@ -54,27 +66,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(User user) {
-        // return repo.updatePassword(user);
-        return null;
-    }
-
-    @Override
     public List<UserDto> findUsersByName(String name) {
-        List<UserDto> list = new ArrayList<>();
-        // list.add(repo.findUsersByName(name));
-        // return list;
-        return null;
+        return repo.findUsersByName(name);
     }
 
     @Override
     public List<UserDto> findUsersByJob(String job) {
-        return null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
     }
 
-    public List<UserDto> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    @Override
+    public Messenger login(UserDto param) {
+        return Messenger.builder()
+                .message("login success")
+                .build();
     }
 
 }

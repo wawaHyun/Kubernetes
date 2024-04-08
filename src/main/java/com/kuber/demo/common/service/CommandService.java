@@ -1,9 +1,12 @@
 package com.kuber.demo.common.service;
 
+import com.kuber.demo.common.component.Messenger;
+
 public interface CommandService<T> {
 
-    T save(T t);
+    Messenger save(T t);
 
-    void deleteById(Long id);
+    Messenger deleteById(Long id);
 
+    Messenger modify(T t);
 }

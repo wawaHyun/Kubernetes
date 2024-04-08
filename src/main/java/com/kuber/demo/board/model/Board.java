@@ -9,7 +9,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Getter
+@Builder
 @ToString(exclude = { "id" })
 @Entity(name = "boards")
 public class Board extends BaseEntity {
@@ -22,8 +24,8 @@ public class Board extends BaseEntity {
     @Column(name = "board_name")
     private String boardName;
 
-    @Column(name = "board_type2")
-    private String boardType2;
+    @Column(name = "board_type")
+    private String boardType;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private List<Article> articles;
