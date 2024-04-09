@@ -18,6 +18,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
 
     default User dtoToEntity(UserDto dto) {
         return User.builder()
+                .id(dto.getId())
                 .username(dto.getUsername())
                 .password(dto.getPassword())
                 .name(dto.getName())
@@ -28,13 +29,16 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
         // boradId로 db를 조회해서 해당 게시판에 게시된 글의 목록을 가져올 경우
     }
 
-    default UserDto entityToDto(User user) {
+    default UserDto entityToDto(User ent) {
         return UserDto.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .name(user.getName())
-                .phone(user.getPhone())
-                .job(user.getJob())
+                .id(ent.getId())
+                .username(ent.getUsername())
+                .password(ent.getPassword())
+                .name(ent.getName())
+                .phone(ent.getPhone())
+                .job(ent.getJob())
+                .modDate(String.valueOf(ent.getModDate()))
+                .regDate(String.valueOf(ent.getRegDate()))
                 .build();
     }
 

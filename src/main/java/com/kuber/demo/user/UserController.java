@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
-// @NoArgsConstructor
 @RequestMapping("/api/users")
 @Slf4j
 public class UserController {
@@ -36,7 +35,7 @@ public class UserController {
     @SuppressWarnings("static-access")
     @PostMapping("/save") // join
     public ResponseEntity<Messenger> save(@RequestBody UserDto dto) {
-        log.info("입력받은 정보 : save");
+        log.info("입력받은 정보 : {}", dto);
         return ResponseEntity.ok(ser.save(dto));
     }
 
@@ -68,6 +67,11 @@ public class UserController {
     public ResponseEntity<Long> count() {
         return ResponseEntity.ok(ser.count());
 
+    }
+
+    @GetMapping("/exist")
+    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
+        return ResponseEntity.ok(ser.existsById(id));
     }
 
     // ----------------------------command-setter-추가_methode------------------------

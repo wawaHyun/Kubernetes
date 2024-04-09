@@ -1,52 +1,82 @@
 package com.kuber.demo.article;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import com.kuber.demo.article.model.Article;
-import com.kuber.demo.article.repository.ArticleRepository;
-import com.kuber.demo.article.service.ArticleServiceImpl;
+import com.kuber.demo.article.model.ArticleDto;
+import com.kuber.demo.article.service.ArticleService;
+import com.kuber.demo.common.component.Messenger;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
+@ApiResponses(value = {
+        @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+        @ApiResponse(responseCode = "404", description = "Customer not found") })
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/articles")
+@Slf4j
 public class ArticleController {
 
-    private final ArticleServiceImpl ser;
-    private final ArticleRepository repo;
+    private final ArticleService ser;
 
-    @GetMapping("/api/all-articles")
-    public Map<?, ?> FindAll() {
-        Map<String, Object> map = new HashMap<>();
+    // ----------------------------Query-getter-JPA_기본제공_methode------------------------
 
-        // @SuppressWarnings("unchecked")
-        // List<?> list = List.of(Article.builder()
-        // .id(0L)
-        // .title("title test")
-        // .content("content test")
-        // .registerDate("24.03.27")
-        // .build());
+    @SuppressWarnings("static-access")
+    @PostMapping("/save")
+    public ResponseEntity<Messenger> save(@RequestBody ArticleDto dto) {
+        log.info("입력받은 정보 : {}", dto);
+        return ResponseEntity.ok(ser.save(dto));
+    }
 
-        List<Article> list = repo.findAll();
+    @GetMapping("/list") // 모든 글에 대한 모든 정보
+    public ResponseEntity<List<ArticleDto>> findAll() {
+        log.info("runing for : findAll");
+        return ResponseEntity.ok(ser.findAll());
+    }
 
-        if (list.isEmpty()) {
-            // map.put("message", Messenger.FAIL);
-        } else {
-            // map.put("message", Messenger.SUCCESS);
-            map.put("result", list);
-            // map.put("test", ser.findAll().get(0));
-            System.out.println("리스트 사이즈 : " + list.size());
-            System.out.println("message " + map.get("message"));
-            System.out.println("test " + map.get("test"));
-            // System.out.println("message "+map.get("result"));
-        }
+    @GetMapping("/detail") // 한개에 대한 모든 정보
+    public ResponseEntity<Optional<ArticleDto>> findById(@RequestParam Long id) {
+        log.info("입력받은 정보 : {}", id);
+        return ResponseEntity.ok(ser.findById(id));
+    }
 
-        return map;
+    @PutMapping("/modify") // update
+    public ResponseEntity<Messenger> modify(@RequestBody ArticleDto param) {
+        log.info("입력받은 정보 : {}", param);
+        return ResponseEntity.ok(ser.modify(param));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Messenger> deleteById(@RequestParam Long id) {
+        log.info("입력받은 정보 : {}", id);
+        return ResponseEntity.ok(ser.deleteById(id));
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(ser.count());
+
+    }
+
+    @GetMapping("/exist")
+    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
+        return ResponseEntity.ok(ser.existsById(id));
+    }
+
+    // ----------------------------command-setter-추가_methode------------------------
+
+    @PostMapping("/search")
+    public ResponseEntity<List<ArticleDto>> findArticlesByTitle(@RequestBody ArticleDto param) {
+        // log.info("입력받은 정보 : {}", name );
+        return ResponseEntity.ok(ser.findArticlesByTitle(param.getTitle()));
     }
 
 }

@@ -1,27 +1,26 @@
-insert into users (user_id, username, password, name, phone, job) values (1, 'Reuven', 1, 'Hammand', '642-988-9762', 'Staff Accountant III');
-insert into users (user_id, username, password, name, phone, job) values (2, 'Mabelle', 2, 'Quesne', '895-497-2107', 'Web Designer I');
-insert into users (user_id, username, password, name, phone, job) values (3, 'Sosanna', 3, 'Chawkley', '193-426-1012', 'Structural Engineer');
-insert into users (user_id, username, password, name, phone, job) values (4, 'Gal', 4, 'Fozard', '708-148-2071', 'Help Desk Operator');
-insert into users (user_id, username, password, name, phone, job) values (5, 'Felita', 5, 'Locock', '958-456-6583', 'Legal Assistant');
-insert into users (user_id, username, password, name, phone, job) values (6, 'Bale', 6, 'Manclark', '911-354-7903', 'Senior Financial Analyst');
-insert into users (user_id, username, password, name, phone, job) values (7, 'Jarret', 7, 'Stollberger', '868-875-7213', 'Research Assistant III');
-insert into users (user_id, username, password, name, phone, job) values (8, 'Andrey', 8, 'Mosby', '895-234-2516', 'Computer Systems Analyst I');
-insert into users (user_id, username, password, name, phone, job) values (9, 'Clem', 9, 'Gemmill', '235-227-2969', 'Budget/Accounting Analyst IV');
-insert into users (user_id, username, password, name, phone, job) values (10, 'Marilyn', 10, 'Fullick', '566-281-8271', 'Sales Associate');
-insert into users (user_id, username, password, name, phone, job) values (11, 'Beverly', 11, 'Sommerville', '484-515-6254', 'Administrative Assistant II');
-insert into users (user_id, username, password, name, phone, job) values (12, 'Tybie', 12, 'Hinstridge', '659-602-7866', 'Sales Representative');
-insert into users (user_id, username, password, name, phone, job) values (13, 'Olympia', 13, 'Germon', '303-786-6311', 'Safety Technician I');
-insert into users (user_id, username, password, name, phone, job) values (14, 'Derward', 14, 'Ridsdell', '811-496-4592', 'Design Engineer');
-insert into users (user_id, username, password, name, phone, job) values (15, 'Othilia', 15, 'Walkden', '658-904-9433', 'Staff Accountant I');
-insert into users (user_id, username, password, name, phone, job) values (16, 'Roger', 16, 'Roan', '914-472-9162', 'VP Product Management');
-insert into users (user_id, username, password, name, phone, job) values (17, 'Catina', 17, 'Frearson', '119-637-6361', 'Information Systems Manager');
-insert into users (user_id, username, password, name, phone, job) values (18, 'Yancey', 18, 'Limon', '461-945-9994', 'Executive Secretary');
-insert into users (user_id, username, password, name, phone, job) values (19, 'Wakefield', 19, 'Bernier', '412-207-3902', 'Accountant IV');
-insert into users (user_id, username, password, name, phone, job) values (20, 'Erek', 20, 'Witchalls', '419-420-6565', 'Budget/Accounting Analyst I');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (1, 'Reuven', 1, 'Hammand', '642-988-9762', 'Staff Accountant III','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (2, 'Mabelle', 2, 'Quesne', '895-497-2107', 'Web Designer I','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (3, 'Sosanna', 3, 'Chawkley', '193-426-1012', 'Structural Engineer','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (4, 'Gal', 4, 'Fozard', '708-148-2071', 'Help Desk Operator','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (5, 'Felita', 5, 'Locock', '958-456-6583', 'Legal Assistant','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (6, 'Bale', 6, 'Manclark', '911-354-7903', 'Senior Financial Analyst','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (7, 'Jarret', 7, 'Stollberger', '868-875-7213', 'Research Assistant III','2024-04-03 12:00:00', '2024-04-03 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (8, 'Andrey', 8, 'Mosby', '895-234-2516', 'Computer Systems Analyst I','2024-04-02 12:00:00','2024-04-02 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (9, 'Clem', 9, 'Gemmill', '235-227-2969', 'Budget/Accounting Analyst IV','2024-04-02 12:00:00', '2024-04-02 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (10, 'Marilyn', 10, 'Fullick', '566-281-8271', 'Sales Associate','2024-04-01 12:30:00','2024-04-01 12:30:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (11, 'Beverly', 11, 'Sommerville', '484-515-6254', 'Administrative Assistant II','2050-04-01 12:00:00','2050-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (12, 'Tybie', 12, 'Hinstridge', '659-602-7866', 'Sales Representative','2024-04-21 12:00:00','2024-04-21 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (13, 'Olympia', 13, 'Germon', '303-786-6311', 'Safety Technician I','2024-04-13 12:00:00','2024-04-13 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (14, 'Derward', 14, 'Ridsdell', '811-496-4592', 'Design Engineer','2024-04-20 12:00:00','2024-04-20 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (15, 'Othilia', 15, 'Walkden', '658-904-9433', 'Staff Accountant I','2024-12-01 12:00:00','2024-12-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (16, 'Roger', 16, 'Roan', '914-472-9162', 'VP Product Management','2024-02-01 12:00:00','2024-02-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (17, 'Catina', 17, 'Frearson', '119-637-6361', 'Information Systems Manager','2024-04-01 12:00:00', '2024-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (18, 'Yancey', 18, 'Limon', '461-945-9994', 'Executive Secretary','2010-04-01 12:00:00','2010-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (19, 'Wakefield', 19, 'Bernier', '412-207-3902', 'Accountant IV','2002-04-01 12:00:00','2002-04-01 12:00:00');
+insert into users (user_id, username, password, name, phone, job, mod_date, reg_date) values (20, 'Erek', 20, 'Witchalls', '419-420-6565', 'Budget/Accounting Analyst I','1995-02-01 12:00:00','1995-02-01 12:00:00');
 
-
-insert into boards (board_id, board_name, board_Type) values (1, 'REVIEW','리뷰');
-insert into boards (board_id, board_name, board_Type) values (2, 'QNA','큐엔에이');
+insert into boards (board_id, board_name, board_Type,mod_date, reg_date) values (1, 'REVIEW','리뷰','2024-03-10 12:34:41', '2024-02-13 13:15:06');
+insert into boards (board_id, board_name, board_Type,mod_date, reg_date) values (2, 'QNA','큐엔에이', '2023-08-29 22:58:08', '2024-03-11 10:26:45');
 
 
 insert into articles (article_id, title, content, user_id, board_id, mod_date, reg_date) values (1, 'Man in the Gray Flannel Suit, The', 'Apt 530', 6, 1, '2023-05-05 00:10:49', '2024-02-28 04:32:04');

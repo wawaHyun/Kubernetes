@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.kuber.demo.common.component.Messenger;
-import com.kuber.demo.user.model.User;
 import com.kuber.demo.user.model.UserDto;
 import com.kuber.demo.user.repository.UserRepository;
 
@@ -24,7 +23,7 @@ public class UserServiceImpl implements UserService {
     public Messenger save(UserDto user) {
         entityToDto((repo.save(dtoToEntity(user))));
         return Messenger.builder()
-                .message("join succes")
+                .message("save succes")
                 .build();
     }
 
@@ -45,9 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Messenger modify(UserDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    public Messenger modify(UserDto dto) {
+        entityToDto((repo.save(dtoToEntity(dto))));
+        return Messenger.builder()
+                .message("modify succes")
+                .build();
     }
 
     @Override

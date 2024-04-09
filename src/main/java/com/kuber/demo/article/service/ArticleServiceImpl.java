@@ -1,65 +1,75 @@
 package com.kuber.demo.article.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 
-import com.kuber.demo.article.model.Article;
 import com.kuber.demo.article.model.ArticleDto;
 import com.kuber.demo.article.repository.ArticleRepository;
 import com.kuber.demo.common.component.Messenger;
-import com.kuber.demo.common.component.PageRequestVo;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository repo;
 
     @Override
-    public Messenger save(ArticleDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    @Override
-    public Messenger deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
-    }
-
-    @Override
-    public Messenger modify(ArticleDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    public Messenger save(ArticleDto article) {
+        entityToDto((repo.save(dtoToEntity(article))));
+        return Messenger.builder()
+                .message("save succes")
+                .build();
     }
 
     @Override
     public List<ArticleDto> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        List<ArticleDto> list = repo.findAll().stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+        return list;
+    }
+
+    @Override
+    public Messenger deleteById(Long id) {
+        repo.deleteById(id);
+        return Messenger.builder()
+                .message("delete succes")
+                .build();
+    }
+
+    @Override
+    public Messenger modify(ArticleDto dto) {
+        entityToDto((repo.save(dtoToEntity(dto))));
+        return Messenger.builder()
+                .message("modify succes")
+                .build();
     }
 
     @Override
     public Optional<ArticleDto> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return Optional.ofNullable(entityToDto(repo.findById(id).orElse(null)));
     }
 
     @Override
     public Long count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
+        return repo.count();
     }
 
     @Override
     public boolean existsById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+        return repo.existsById(id);
+    }
+
+    @Override
+    public List<ArticleDto> findArticlesByTitle(String name) {
+        return repo.findArticlesByTitle(name);
     }
 
 }

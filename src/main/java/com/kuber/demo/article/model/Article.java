@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Builder
 @AllArgsConstructor
-@ToString(exclude = {"id"})
+@ToString(exclude = { "id" })
 @Entity(name = "articles")
 public class Article extends BaseEntity {
 
@@ -22,7 +22,6 @@ public class Article extends BaseEntity {
 
     private String title;
     private String content;
-    private String registerDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
