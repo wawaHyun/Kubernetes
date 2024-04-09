@@ -7,7 +7,8 @@ export const initialState: IArticle = {
     // writer : 0,
     modDate: '',
     regDate: '',
-    array: []
+    array: [],
+    json: {}
 
 
 }

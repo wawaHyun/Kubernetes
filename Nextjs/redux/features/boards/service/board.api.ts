@@ -1,5 +1,5 @@
 import { instance } from '@/redux/common/configs/axios-config'
-import boardColumns from '../modul/columns'     
+import boardColumns from '../modul/columns'
 
 export const AllBoardsAPI = async (page: number) => {
     try {
@@ -18,12 +18,12 @@ export const AllBoardsAPI = async (page: number) => {
 export const findBoardsAPI = async (id: number) => {
     try {
         const response = await instance.get('/api/boards/detail', {
-            params: {id} //1page 당 10 게시글
+            params: { id }
         });
-        console.log("response ",response)
+        console.log("response ", response)
         return response.data
     } catch (error) {
-        console.log(error ," findBoardsAPI EERR!!!")
+        console.log(error, " findBoardsAPI EERR!!!")
         return error
     }
 

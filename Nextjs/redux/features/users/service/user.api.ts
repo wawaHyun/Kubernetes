@@ -7,7 +7,20 @@ export const fetchAllUsersAPI = async (page: number) => {
         })
         return response.data
     } catch (error) {
-        console.log(error + " fetchAllUsersAPI EERR!!!")
+        console.log(error, " fetchAllUsersAPI EERR!!!")
+        return error
+    }
+}
+
+export const findUserByIdAPI = async (id: number) => {
+    try {
+        const response = await instance.get('/api/users/detail', {
+            params: { id }
+        })
+        console.log("response ", response)
+        return response.data
+    } catch (error) {
+        console.log(error, " findUserByIdAPI EERR!!!")
         return error
     }
 }

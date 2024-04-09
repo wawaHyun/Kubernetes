@@ -21,15 +21,15 @@ export const boardSlice = createSlice({
 
         console.log('------------------ conclusion ---------------')
         builder //해당되는 객체가 들어오면 그때만 만들어짐. swich case.
-            .addCase(fetchAllBoards.fulfilled, (state: any, { payload }: any) => {state.array = payload }) //all list
-            .addCase(findBoardById.fulfilled,(state: any, { payload }: any) => {state.json = payload })
+            .addCase(fetchAllBoards.fulfilled, (state: any, { payload }: any) => { state.array = payload }) //all list
+            .addCase(findBoardById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 
 // getter
 export const getAllBoards = (state: any) => state.board.array;
 
-export const getFindBoardById = (state: any) => {
+export const getFindBoard = (state: any) => {
     console.log('------------------ Before useSelector ---------------')
     console.log(JSON.stringify(state.board.json))
     return state.board.json; //board는 reducer에서 나온 것. 

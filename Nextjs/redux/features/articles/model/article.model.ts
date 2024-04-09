@@ -7,7 +7,8 @@ interface IArticle {
     // writer : number,
     modDate?: string,
     regDate?: string,
-    array: []
+    array: [],
+    json: {}
 
 
 }
