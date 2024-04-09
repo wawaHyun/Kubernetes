@@ -11,16 +11,6 @@ const status = {
     rejected: 'rejected'
 }
 
-// setter
-
-const handlePending = (state: any) => {
-
-}
-
-const handleRejected = (state: any) => {
-
-}
-
 
 export const boardSlice = createSlice({
     name: "boards",

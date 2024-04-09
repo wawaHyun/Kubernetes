@@ -18,9 +18,9 @@ export const fetchAllBoards: any = createAsyncThunk(
 
 export const findBoardById: any = createAsyncThunk(
     'boards/findBoardById',
-    async (page: number) => {
-        console.log('findBoardById page : ' + page)
-        const data: any = await findBoardsAPI(page);
+    async (id: number) => {
+        console.log('findBoardById page : ' + id)
+        const data: any = await findBoardsAPI(id);
 
         return data
     }

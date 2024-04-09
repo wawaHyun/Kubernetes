@@ -18,7 +18,7 @@ export const AllBoardsAPI = async (page: number) => {
 export const findBoardsAPI = async (id: number) => {
     try {
         const response = await instance.get('/api/boards/detail', {
-            params: { id} //1page 당 10 게시글
+            params: {id} //1page 당 10 게시글
         });
         console.log("response ",response)
         return response.data
