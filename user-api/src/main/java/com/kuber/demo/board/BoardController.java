@@ -45,9 +45,9 @@ public class BoardController {
     }
 
     @GetMapping("/detail") // 한개에 대한 모든 정보
-    public ResponseEntity<Optional<BoardDto>> findById(@RequestParam Long id) {
+    public ResponseEntity<BoardDto> findById(@RequestParam Long id) {
         log.info("입력받은 정보 : {}", id);
-        return ResponseEntity.ok(ser.findById(id));
+        return ResponseEntity.ok(ser.findById(id).orElseGet(BoardDto::new));
     }
 
     @PutMapping("/modify") // update

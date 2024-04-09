@@ -1,22 +1,19 @@
-package com.kuber.demo.user;
+package com.kuber.demo.article;
 
-import com.kuber.demo.common.component.Messenger;
-import com.kuber.demo.user.model.UserDto;
-import com.kuber.demo.user.service.UserService;
-
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.*;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.kuber.demo.article.model.ArticleDto;
+import com.kuber.demo.article.service.ArticleService;
+import com.kuber.demo.common.component.Messenger;
+
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @ApiResponses(value = {
         @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
@@ -24,35 +21,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping("/api/articles")
 @Slf4j
-public class UserController {
+public class ArticleController {
 
-    private final UserService ser;
+    private final ArticleService ser;
 
     // ----------------------------Query-getter-JPA_기본제공_methode------------------------
 
     @SuppressWarnings("static-access")
-    @PostMapping("/save") // join
-    public ResponseEntity<Messenger> save(@RequestBody UserDto dto) {
+    @PostMapping("/save")
+    public ResponseEntity<Messenger> save(@RequestBody ArticleDto dto) {
         log.info("입력받은 정보 : {}", dto);
         return ResponseEntity.ok(ser.save(dto));
     }
 
-    @GetMapping("/list") // 모든 회원에 대한 모든 정보
-    public ResponseEntity<List<UserDto>> findAll() {
+    @GetMapping("/list") // 모든 글에 대한 모든 정보
+    public ResponseEntity<List<ArticleDto>> findAll() {
         log.info("runing for : findAll");
         return ResponseEntity.ok(ser.findAll());
     }
 
-    @GetMapping("/detail") // 한 사람에 대한 모든 정보
-    public ResponseEntity<Optional<UserDto>> findById(@RequestParam Long id) {
+    @GetMapping("/detail") // 한개에 대한 모든 정보
+    public ResponseEntity<ArticleDto> findById(@RequestParam Long id) {
         log.info("입력받은 정보 : {}", id);
-        return ResponseEntity.ok(ser.findById(id));
+        return ResponseEntity.ok(ser.findById(id).orElseGet(ArticleDto::new));
     }
 
     @PutMapping("/modify") // update
-    public ResponseEntity<Messenger> modify(@RequestBody UserDto param) {
+    public ResponseEntity<Messenger> modify(@RequestBody ArticleDto param) {
         log.info("입력받은 정보 : {}", param);
         return ResponseEntity.ok(ser.modify(param));
     }
@@ -77,19 +74,9 @@ public class UserController {
     // ----------------------------command-setter-추가_methode------------------------
 
     @PostMapping("/search")
-    public ResponseEntity<List<UserDto>> findUsersByName(@RequestBody UserDto param) {
+    public ResponseEntity<List<ArticleDto>> findArticlesByTitle(@RequestBody ArticleDto param) {
         // log.info("입력받은 정보 : {}", name );
-        return ResponseEntity.ok(ser.findUsersByName(param.getName()));
-    }
-
-    @GetMapping("/login")
-    public ResponseEntity<Messenger> login(@RequestBody UserDto param) {
-
-        log.info("입력받은 정보 : {}", param);
-        return ResponseEntity.ok(ser.login(UserDto.builder()
-                .username(param.getUsername())
-                .password(param.getPassword())
-                .build()));
+        return ResponseEntity.ok(ser.findArticlesByTitle(param.getTitle()));
     }
 
 }

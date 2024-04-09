@@ -5,16 +5,18 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.stereotype.Component;
 
 import com.kuber.demo.article.model.Article;
+import com.kuber.demo.user.model.User.builder;
 
 @Component
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDto {
     private Long id;
     private String username;

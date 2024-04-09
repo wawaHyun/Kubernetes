@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findById(Long id) {
-        return Optional.ofNullable(entityToDto(repo.findById(id).orElse(null)));
+        return repo.findById(id).map(i->entityToDto(i));
     }
 
     @Override
