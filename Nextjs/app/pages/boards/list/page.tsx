@@ -3,6 +3,7 @@
 import boardColumns from "@/app/component/boards/modul/columns";
 import { fetchAllBoards } from "@/app/component/boards/service/board.service";
 import { getAllBoards } from "@/app/component/boards/service/board.slice";
+import { MyTypography } from "@/app/component/common/module/cell";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
@@ -30,7 +31,7 @@ const AllboardsPage: NextPage = () => {
     }, [dispatch])
 
     return (<>
-        <h2>개인페이지 ALL boards</h2>
+        {MyTypography('ALL Boards : '+allBoards.length,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%" }}>
             {allBoards && <DataGrid// 🔥 4

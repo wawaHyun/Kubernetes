@@ -8,6 +8,7 @@ import { NextPage } from "next";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BorderAll } from "@mui/icons-material";
+import { MyTypography } from "@/app/component/common/module/cell";
 
 const AllusersPage: NextPage = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const AllusersPage: NextPage = () => {
     }, [dispatch])
 
     return (<>
-        <h2>개인페이지 ALL users</h2>
+        {MyTypography('ALL Users : '+allUsers.length,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%" }}>
             {allUsers && <DataGrid// 🔥 4

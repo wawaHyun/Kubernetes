@@ -1,15 +1,14 @@
 
-import { Typography } from '@mui/material'
-import { GridRowId, GridColDef } from '@mui/x-data-grid'
-import Link from 'next/link';
-import { PG } from '@/app/component/common/enums/PG';
-import { articleColumn } from '../model/articleColumn';
+import { Link } from '@mui/material'
+import { GridColDef } from '@mui/x-data-grid'
+import { MyTypography } from '../../common/module/cell';
+import { PG } from '../../common/enums/PG';
 
 
 export default function articleColumns(): GridColDef[] {
 
     interface CellType {
-        row: articleColumn;
+        row: IArticle;
     }
 
 
@@ -20,7 +19,7 @@ export default function articleColumns(): GridColDef[] {
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({ row }: CellType) => <p className='type'>{row.id}</p>
+            renderCell: ({ row }: CellType) =>MyTypography(row.id,"1.5rem")
         },
         {
             flex: 0.04,
@@ -29,9 +28,9 @@ export default function articleColumns(): GridColDef[] {
             field: 'title',
             headerName: 'TITLE',
             renderCell: ({ row }: CellType) =>
-                <p className='type' >
-                    <Link href={`${PG.ARTICLE}/detail/${row.id}`}> {row.title}</Link>
-                </p>
+                MyTypography(
+                    <Link href={`${PG.ARTICLE}/detail/${row.id}`}> {row.title} </Link>
+                    ,"1.5rem")
         },
         {
             flex: 0.04,
@@ -39,8 +38,7 @@ export default function articleColumns(): GridColDef[] {
             sortable: false,
             field: 'content',
             headerName: 'CONTENT',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.content}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.content,"1.5rem")
         },
         {
             flex: 0.04,
@@ -48,8 +46,7 @@ export default function articleColumns(): GridColDef[] {
             sortable: false,
             field: 'modDate',
             headerName: 'mod date',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.modDate}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.modDate,"1.5rem")
         },
         {
             flex: 0.04,
@@ -57,8 +54,7 @@ export default function articleColumns(): GridColDef[] {
             sortable: false,
             field: 'regDate',
             headerName: 'reg date',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.regDate}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.regDate,"1.5rem")
         }
 
     ]

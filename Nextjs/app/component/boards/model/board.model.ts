@@ -5,8 +5,8 @@ interface IBoard {
     boardType?: string,
     modDate?: string,
     regDate?: string,
-    array? : [],
-    json? : {}
+    array? : IBoard[],
+    json? : IBoard
 
 
 }

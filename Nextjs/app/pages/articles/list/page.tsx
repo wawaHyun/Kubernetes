@@ -4,7 +4,7 @@
 import articleColumns from "@/app/component/articles/modul/columns";
 import { fetchAllArticles } from "@/app/component/articles/service/article.service";
 import { getAllArticles } from "@/app/component/articles/service/article.slice";
-import { Box } from "@mui/material";
+import { MyTypography } from "@/app/component/common/module/cell";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
 import { useEffect } from "react";
@@ -31,13 +31,13 @@ const AllarticlesPage: NextPage = () => {
     }, [dispatch])
 
     return (<>
-        <h2>개인페이지 ALL articles</h2>
+        {MyTypography('ALL Articles '+allArticles.length,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%", fontSize:30}}>
             {allArticles && <DataGrid// 🔥 4
                 rows={allArticles}
                 columns={articleColumns()}
-                pageSizeOptions={[5, 10, 20, 100]} // 4-1
+                pageSizeOptions={[5,10,20,100]} // 4-1
                 checkboxSelection
             />}
         </div>

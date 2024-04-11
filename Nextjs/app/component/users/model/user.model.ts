@@ -4,7 +4,7 @@ export interface IUser {
     password?: string,
     name?: string,
     phone?: string,
-    addressId?: number,
+    address?: number,
     job?: string,
     modDate?: string,
     regDate?: string,

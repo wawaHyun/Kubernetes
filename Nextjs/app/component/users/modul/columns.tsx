@@ -1,12 +1,13 @@
 import { Link, Typography } from '@mui/material'
 import { GridRowId, GridColDef } from '@mui/x-data-grid'
-import { userColumn } from '../model/userColumn'
 import { PG } from '@/app/component/common/enums/PG';
+import { IUser } from '../model/user.model';
+import { MyTypography } from '../../common/module/cell';
 
 export default function userColumns(): GridColDef[] {
 
     interface CellType {
-        row: userColumn;
+        row: IUser;
     }
 
 
@@ -17,8 +18,7 @@ export default function userColumns(): GridColDef[] {
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" > {row.id}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.id,"1.5rem")
         },
         {
             flex: 0.04,
@@ -27,9 +27,9 @@ export default function userColumns(): GridColDef[] {
             field: 'username',
             headerName: 'USERNAME',
             renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}>
+                MyTypography(
                     <Link href={`${PG.USER}/detail/${row.id}`}> {row.username} </Link>
-                </Typography>
+                    ,"1.5rem")
         },
         {
             flex: 0.04,
@@ -37,9 +37,8 @@ export default function userColumns(): GridColDef[] {
             sortable: false,
             field: 'password',
             headerName: 'PASSWORD',
-            renderCell({ row }: CellType) {
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.password}</Typography>
-                return <>********</>
+            renderCell: ({ row }: CellType) =>{MyTypography(row.password,"1.5rem")
+                return MyTypography('********',"1.5rem")
             }
         },
         {
@@ -48,8 +47,7 @@ export default function userColumns(): GridColDef[] {
             sortable: false,
             field: 'name',
             headerName: 'NAME',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.name}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.name,"1.5rem")
         },
         {
             flex: 0.04,
@@ -57,8 +55,7 @@ export default function userColumns(): GridColDef[] {
             sortable: false,
             field: 'phone',
             headerName: 'PHONE',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.phone}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.phone,"1.5rem")
         },
         {
             flex: 0.04,
@@ -66,8 +63,7 @@ export default function userColumns(): GridColDef[] {
             sortable: false,
             field: 'job',
             headerName: 'JOB',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.job}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.job,"1.5rem")
         }
 
 

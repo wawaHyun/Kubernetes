@@ -28,3 +28,42 @@ export const findArticlesAPI = async (id: number) => {
     }
 
 }
+
+export const countArticlesAPI = async () => {
+    try {
+        const response = await instance.get('/api/articles/count')
+        console.log("response " + response)
+        return response.data
+    } catch (error) {
+        console.log(error + " countArticlesAPI EERR!!!")
+        return error
+    }
+
+}
+
+export const modifyArticlesAPI = async (props: {}) => {
+    try {
+        const response = await instance.put('/api/articles/modify',props)
+        console.log("response " + JSON.stringify(response.data))
+        return response.data
+    } catch (error) {
+        console.log(error + " findArticlesAPI EERR!!!")
+        return error
+    }
+
+}
+
+
+export const deleteArticlesAPI = async (id: number) => {
+    try {
+        const response = await instance.delete('/api/articles/delete', {
+            params: { id }
+        })
+        console.log("response " + response)
+        return response.data
+    } catch (error) {
+        console.log(error + " deleteArticlesAPI EERR!!!")
+        return error
+    }
+
+}

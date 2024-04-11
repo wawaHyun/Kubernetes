@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchAllUsersAPI, findUserByIdAPI } from "./user.api";
+import { deleteUserByIdAPI, fetchAllUsersAPI, findUserByIdAPI, modifyUserByIdAPI } from "./user.api";
+import { IUser } from "../model/user.model";
 
 export const fetchAllUsers: any = createAsyncThunk(
     'users/fetchAllUsers',
@@ -17,6 +18,25 @@ export const findUserById: any = createAsyncThunk(
     async (id: number) => {
         console.log('findUserById id : ' + id)
         const data: any = await findUserByIdAPI(id);
+        return data;
+    }
+)
+
+export const modifyUserById: any = createAsyncThunk(
+    'users/modifyUserById',
+    async (id: IUser) => {
+        console.log('수정하는 값 username : ' + JSON.stringify(id))
+        const data: any = await modifyUserByIdAPI(id);
+        return data;
+    }
+)
+
+
+export const deleteUserById: any = createAsyncThunk(
+    'users/deleteUserById',
+    async (id: IUser) => {
+        console.log('deleteUserById username : ' + id.username)
+        const data: any = await deleteUserByIdAPI(id);
         return data;
     }
 )

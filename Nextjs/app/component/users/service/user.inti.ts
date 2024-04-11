@@ -7,7 +7,7 @@ export const initialState: IUser = {
     password: '',
     name: '',
     phone: '',
-    addressId: 0,
+    address: 0,
     job: '',
     modDate: '',
     regDate: '',

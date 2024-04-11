@@ -1,15 +1,15 @@
 
 import { Typography } from '@mui/material'
 import { GridRowId, GridColDef } from '@mui/x-data-grid'
-import { BoardColumn } from '../model/BoradColumn'
 import Link from 'next/link';
 import { PG } from '@/app/component/common/enums/PG';
+import { MyTypography } from '../../common/module/cell';
 
 
 export default function boardColumns(): GridColDef[] {
 
     interface CellType {
-        row: BoardColumn;
+        row: IBoard;
     }
 
 
@@ -20,8 +20,7 @@ export default function boardColumns(): GridColDef[] {
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.id}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.id,"1.5rem")
         },
         {
             flex: 0.04,
@@ -30,9 +29,9 @@ export default function boardColumns(): GridColDef[] {
             field: 'boardName',
             headerName: 'board Name',
             renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}>
+                MyTypography(
                     <Link href={`${PG.BOARD}/detail/${row.id}`}> {row.boardName} </Link>
-                </Typography>
+                    ,"1.5rem")
         },
         {
             flex: 0.04,
@@ -40,8 +39,7 @@ export default function boardColumns(): GridColDef[] {
             sortable: false,
             field: 'boardType',
             headerName: 'board Type',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.boardType}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.boardType,"1.5rem")
         },
         {
             flex: 0.04,
@@ -49,8 +47,7 @@ export default function boardColumns(): GridColDef[] {
             sortable: false,
             field: 'modDate',
             headerName: 'mod date',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.modDate}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.modDate,"1.5rem")
         },
         {
             flex: 0.04,
@@ -58,8 +55,7 @@ export default function boardColumns(): GridColDef[] {
             sortable: false,
             field: 'regDate',
             headerName: 'reg date',
-            renderCell: ({ row }: CellType) =>
-                <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {row.regDate}</Typography>
+            renderCell: ({ row }: CellType) =>MyTypography(row.regDate,"1.5rem")
         }
 
     ]

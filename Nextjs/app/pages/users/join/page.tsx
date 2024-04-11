@@ -21,7 +21,6 @@ const Join: NextPage = () => {
   const handleUsername = (e: any) => {
     setusername(e.target.value);
   }
-
   const handlePassword = (e: any) => {
     setpassword(e.target.value);
   }
@@ -47,6 +46,7 @@ const Join: NextPage = () => {
   const handleCancel = () => {
     alert('Ok, back to main..');
   }
+
 
 
   return (<>
