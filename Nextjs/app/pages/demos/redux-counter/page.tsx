@@ -2,7 +2,7 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import {useSelector,useDispatch} from 'react-redux'
-import {handlePlus,handleMinus, getCount} from '@/redux/features/counter/counter.slice'
+import {handlePlus,handleMinus, getCount} from '@/app/component/counter/counter.slice'
 import { NextPage } from 'next';
 
 const CounterPage:NextPage =() =>{

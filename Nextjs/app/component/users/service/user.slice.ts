@@ -25,7 +25,7 @@ export const userSlice = createSlice({
 })
 
 export const getAllUsers = (state: any) => state.user.array;
-export const getFindUsers = (state: any) => state.user.json;
+export const getFindUser = (state: any) => state.user.json;
 
 
 export const { } = userSlice.actions

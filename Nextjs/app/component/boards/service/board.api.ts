@@ -1,4 +1,4 @@
-import { instance } from '@/redux/common/configs/axios-config'
+import { instance } from '@/app/component/common/configs/axios-config'
 import boardColumns from '../modul/columns'
 
 export const AllBoardsAPI = async (page: number) => {

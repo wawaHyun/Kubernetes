@@ -23,12 +23,13 @@ export const articleSlice = createSlice({
             .addCase(fetchAllArticles.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(findArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
 
+            
     }
 })
 
 
 export const getAllArticles = (state: any) => state.article.array;
-export const getFindArticles = (state: any) => state.article.json;
+export const getFindArticle = (state: any) => state.article.json;
 
 
 

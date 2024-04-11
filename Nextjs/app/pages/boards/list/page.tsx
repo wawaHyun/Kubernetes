@@ -1,8 +1,8 @@
 'use client'
 
-import boardColumns from "@/redux/features/boards/modul/columns";
-import { fetchAllBoards } from "@/redux/features/boards/service/board.service";
-import { getAllBoards } from "@/redux/features/boards/service/board.slice";
+import boardColumns from "@/app/component/boards/modul/columns";
+import { fetchAllBoards } from "@/app/component/boards/service/board.service";
+import { getAllBoards } from "@/app/component/boards/service/board.slice";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";

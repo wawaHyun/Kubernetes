@@ -1,7 +1,7 @@
 import { Link, Typography } from '@mui/material'
 import { GridRowId, GridColDef } from '@mui/x-data-grid'
 import { userColumn } from '../model/userColumn'
-import { PG } from '@/redux/common/enums/PG';
+import { PG } from '@/app/component/common/enums/PG';
 
 export default function userColumns(): GridColDef[] {
 

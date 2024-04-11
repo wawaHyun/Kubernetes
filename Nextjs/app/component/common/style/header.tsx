@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { PG } from '@/redux/common/enums/PG';
+import { PG } from '@/app/component/common/enums/PG';
 import { useRouter } from "next/navigation";
 
 

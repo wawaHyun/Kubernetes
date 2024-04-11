@@ -1,16 +1,15 @@
 'use client'
 
-import { MyTypography } from "@/app/component/style/cell"
-import { findUserById } from "@/redux/features/users/service/user.service"
-import { getFindUsers } from "@/redux/features/users/service/user.slice"
-import { Typography } from "@mui/material"
+import { MyTypography } from "@/app/component/common/module/cell"
+import { findUserById } from "@/app/component/users/service/user.service"
+import { getFindUser } from "@/app/component/users/service/user.slice"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 
 export default function UserDetailPage(props: any) {
     const dispatch = useDispatch()
-    const findUser = useSelector(getFindUsers)
+    const findUser = useSelector(getFindUser)
 
 
 
@@ -32,9 +31,9 @@ export default function UserDetailPage(props: any) {
 
     return (<>
 
-        user detail
-        <span>ID : </span> <Typography textAlign="center" sx={{ fontSize: "1.5rem" }}> {props.params.id} </Typography>
-        <span>username : </span> {MyTypography(findUser.username, "1.5rem")}
+        user detail <br /> <br />
+        <span>ID : </span> {MyTypography(props.params.id, "1,5rem")}
+        <span>username :  {MyTypography(findUser.username, "1.5rem")}</span>
         <span>job : </span>{MyTypography(findUser.job, "1.5rem")}
         <span>등록일 : </span> {MyTypography(findUser.modDate, "1.5rem")}
         <span>수정일 : </span>{MyTypography(findUser.regDate, "1.5rem")}

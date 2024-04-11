@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { GridRowId, GridColDef } from '@mui/x-data-grid'
 import { BoardColumn } from '../model/BoradColumn'
 import Link from 'next/link';
-import { PG } from '@/redux/common/enums/PG';
+import { PG } from '@/app/component/common/enums/PG';
 
 
 export default function boardColumns(): GridColDef[] {

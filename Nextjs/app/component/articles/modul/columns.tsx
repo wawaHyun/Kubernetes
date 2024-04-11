@@ -2,7 +2,7 @@
 import { Typography } from '@mui/material'
 import { GridRowId, GridColDef } from '@mui/x-data-grid'
 import Link from 'next/link';
-import { PG } from '@/redux/common/enums/PG';
+import { PG } from '@/app/component/common/enums/PG';
 import { articleColumn } from '../model/articleColumn';
 
 

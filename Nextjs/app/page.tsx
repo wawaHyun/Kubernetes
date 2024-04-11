@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from 'axios';
 import Link from "next/link";
 import './globals.css'
-import { PG } from "../redux/common/enums/PG";
+import { PG } from "./component/common/enums/PG";
 const SERVER = 'http://localhost:8080'
 
 export default function Home() {

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import AxiosConfig from "@/redux/common/configs/axios-config";
-import { API } from "@/redux/common/enums/API";
-import { PG } from "@/redux/common/enums/PG";
+import AxiosConfig from "@/app/component/common/configs/axios-config";
+import { API } from "@/app/component/common/enums/API";
+import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next";
 
 const Join: NextPage = () => {

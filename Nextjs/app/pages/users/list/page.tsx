@@ -1,8 +1,7 @@
 'use client'
-import userColumns from "@/redux/features/users/modul/columns";
-import { IUser } from "@/redux/features/users/model/user.model";
-import { fetchAllUsers } from "@/redux/features/users/service/user.service";
-import { getAllUsers } from "@/redux/features/users/service/user.slice";
+import userColumns from "@/app/component/users/modul/columns";
+import { fetchAllUsers } from "@/app/component/users/service/user.service";
+import { getAllUsers } from "@/app/component/users/service/user.slice";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";

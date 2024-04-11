@@ -1,8 +1,9 @@
 'use client'
 
-import articleColumns from "@/redux/features/articles/modul/columns";
-import { fetchAllArticles } from "@/redux/features/articles/service/article.service";
-import { getAllArticles } from "@/redux/features/articles/service/article.slice";
+
+import articleColumns from "@/app/component/articles/modul/columns";
+import { fetchAllArticles } from "@/app/component/articles/service/article.service";
+import { getAllArticles } from "@/app/component/articles/service/article.slice";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
