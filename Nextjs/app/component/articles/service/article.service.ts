@@ -20,20 +20,19 @@ export const findArticleById: any = createAsyncThunk(
     }
 )
 
-export const countArticleById: any = createAsyncThunk(
-    'articles/countArticleById',
+export const findCountArticle: any = createAsyncThunk(
+    'articles/findCountArticle',
     async () => {
-        console.log('countArticleById : count')
+        console.log('findCountArticle : running check')
         const data: any = await countArticlesAPI();
         return data
     }
 )
 
 
-
 export const modifyArticleById: any = createAsyncThunk(
     'articles/modifyArticleById',
-    async (props: IUser) => {
+    async (props: IArticle) => {
         console.log('modifyArticleById id : ' + props)
         const data: any = await modifyArticlesAPI(props);
         return data

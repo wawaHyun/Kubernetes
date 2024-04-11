@@ -26,6 +26,16 @@ export const findUserByIdAPI = async (id: number) => {
     }
 }
 
+export const countUsersAPI = async () => {
+    try {
+        const response = await instance.get('/api/users/count')
+        console.log("count response ", response.data)
+        return response.data
+    } catch (error) {
+        console.log(error, " countAllUsersAPI EERR!!!")
+        return error
+    }
+}
 
 export const modifyUserByIdAPI = async (params:IUser) => {
     try {

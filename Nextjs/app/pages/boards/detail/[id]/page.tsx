@@ -1,49 +1,53 @@
 'use client'
 
-import { findBoardById } from "@/app/component/boards/service/board.service";
+import { deleteBoardById, findBoardById, modifyBoardById } from "@/app/component/boards/service/board.service";
 import { getFindBoard } from "@/app/component/boards/service/board.slice";
 import { MyTypography } from "@/app/component/common/module/cell";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function BoardDetailPage(props: any) {
-    const dispatch = useDispatch()
-    const findBoard = useSelector(getFindBoard)
+export default function BoardDetailPage({ params }: any) {
+  const dispatch = useDispatch()
+  const findBoard = useSelector(getFindBoard)
 
-    const [boardName,setBoardName] = useState();
-    const [boardType,setBoardType] = useState();
-
-    const handleBoardName = (e: any) => {
-        setBoardName(e.target.value);
-      }
-      const handleBoardType = (e: any) => {
-        setBoardType(e.target.value);
-      }
+  const [inputValue, setInputValue] = useState({ id: params.id, boardName: '', boardType: '' });
 
 
-      // const handleModify = () => {
-      //   dispatch(modifyArticleById(props.params.id))
-      //   alert('succseful modity');
-      // }
+  const handleInput = (e: any) => {
+    const {
+      target: { value, name }
+    } = e;
+    setInputValue(dto => ({ ...dto, [name]: value }));
+  };
 
-    useEffect(() => {
-        dispatch(findBoardById(props.params.id))
-        // dispatch(modifyArticleById(props.params.id))
-    }, [dispatch])
 
-    return (<>
+  const handleModify = () => {
+    dispatch(modifyBoardById(inputValue))
+    console.log("handleModify " + inputValue)
+  }
 
-{MyTypography('board detail : '+ props.params.id,"1.5rem")}
-        {MyTypography('ID : ' + props.params.id, "1.5rem")}
-        {MyTypography('board name : ' + findBoard.boardName, "1.5rem")}
-        {MyTypography(<input type="text" onChange={handleBoardName}/>,"1.5rem")}
+  const handleDelete = () => {
+    dispatch(deleteBoardById(params.id))
+  }
 
-        {MyTypography('board type : ' + findBoard.boardType, "1.5rem")}
-        {MyTypography(<input type="text" onChange={handleBoardType}/>,"1.5rem")}
-        {MyTypography('등록일 : ' + findBoard.modDate, "1.5rem")}
 
-        <br />
-    {/* {MyTypography(<button type="button" onClick={handleModify} > 수정</button>, "1.5rem")} */}
+  useEffect(() => {
+    dispatch(findBoardById(params.id))
+  }, [dispatch])
 
-    </>)
+  return (<>
+
+    {MyTypography('board detail ', "1.5rem")}
+    {MyTypography('ID : ' + params.id, "1.5rem")}
+
+    {MyTypography(<input type="text" name="boardName" defaultValue={findBoard.boardName} onChange={handleInput} />, "1.5rem")}
+    {MyTypography(<input type="text" name="boardType" defaultValue={findBoard.boardType} onChange={handleInput} />, "1.5rem")}
+    {MyTypography('등록일 : ' + findBoard.regDate, "1.5rem")}
+    {MyTypography('수정일 : ' + findBoard.modDate, "1.5rem")}
+
+    <br />
+    {MyTypography(<button type="button" onClick={handleModify} > 수정</button>, "1.5rem")}
+    {MyTypography(<button type="button" onClick={handleDelete} > 삭제</button>, "1.5rem")}
+
+  </>)
 }

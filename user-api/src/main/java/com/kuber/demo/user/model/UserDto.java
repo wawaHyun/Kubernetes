@@ -13,7 +13,8 @@ import com.kuber.demo.article.model.Article;
 import com.kuber.demo.user.model.User.builder;
 
 @Component
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -55,6 +55,7 @@ public class UserController {
     public ResponseEntity<Messenger> modify(@RequestBody UserDto param) {
         log.info("입력받은 정보 : {}", param);
         return ResponseEntity.ok(ser.modify(param));
+
     }
 
     @DeleteMapping("/delete")
@@ -70,7 +71,7 @@ public class UserController {
     }
 
     @GetMapping("/exist")
-    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
+    public ResponseEntity<Boolean> existsById(@PathVariable Long id) {
         return ResponseEntity.ok(ser.existsById(id));
     }
 

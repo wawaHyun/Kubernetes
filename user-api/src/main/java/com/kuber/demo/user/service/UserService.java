@@ -17,6 +17,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
     Messenger login(UserDto param);
 
     default User dtoToEntity(UserDto dto) {
+        System.out.println(">>>>>>    "+dto.toString());
         return User.builder()
                 .id(dto.getId())
                 .username(dto.getUsername())

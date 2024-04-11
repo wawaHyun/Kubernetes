@@ -10,6 +10,7 @@ import com.kuber.demo.common.model.BaseEntity;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
+@ToString
 @Builder
 @AllArgsConstructor
 @Entity(name = "users")

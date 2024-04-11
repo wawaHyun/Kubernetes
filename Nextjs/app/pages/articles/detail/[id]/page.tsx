@@ -6,48 +6,44 @@ import { MyTypography } from "@/app/component/common/module/cell";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
-export default function ArticleDetailPage(props: any) {
+export default function ArticleDetailPage({params}: any) {
   const dispatch = useDispatch()
   const findArticle = useSelector(getFindArticle)
 
-  const [title,setTitle] = useState();
-  const [content,setContent] = useState();
+  const [inputValue,setInputValue] = useState({id:params.id, title:'',content:''});
 
-  const handleTitle = (e: any) => {
-      setTitle(e.target.value);
-    }
-    const handleContent = (e: any) => {
-      setContent(e.target.value);
-    }
+
+  const handleInput = (e:any) => {
+    const {
+      target: { value, name }
+    } = e;
+    setInputValue(dto => ({ ...dto, [name]: value }));
+  };
 
 
     const handleModify = () => {
-      const id = props.params.id
-      const data = {id,title, content}
-      console.log("handleModify before "+JSON.stringify(data))
-      dispatch(modifyArticleById(data))
-      console.log("handleModify end "+JSON.stringify(data))
+      dispatch(modifyArticleById(inputValue))
     }
 
   const handleDelete = () => {
-    dispatch(deleteArticleById(props.params.id))
+    dispatch(deleteArticleById(params.id))
   }
 
   useEffect(() => {
-    dispatch(findArticleById(props.params.id))
+    dispatch(findArticleById(params.id))
   }, [dispatch])
 
   return (<>
-    {MyTypography('article detail : ' + props.params.id, "1.5rem")}
+    {MyTypography('article detail : ' + params.id, "1.5rem")}
 
     Title : 
-    {MyTypography(<input type="text" name='title' placeholder={findArticle.title} onChange={handleTitle} />, "1.5rem")}
+    {MyTypography(<input type="text" name='title' defaultValue={findArticle.title} onChange={handleInput} />, "1.5rem")}
 
-Content : 
-    {MyTypography(<input type="text" name='content' placeholder={findArticle.content} onChange={handleContent} />, "1.5rem")}
+Content :
+    {MyTypography(<input type="text" name='content' defaultValue={findArticle.content} onChange={handleInput} />, "1.5rem")}
 
-    {MyTypography('modDate : ' + findArticle.modDate, "1.5rem")}
-    {MyTypography('regDate : ' + findArticle.regDate, "1.5rem")}
+    {MyTypography('등록일 : ' + findArticle.regDate, "1.5rem")}
+    {MyTypography('수정일 : ' + findArticle.modDate, "1.5rem")}
 
     <br />
     {MyTypography(<button type="button" onClick={handleModify} > 수정</button>, "1.5rem")}

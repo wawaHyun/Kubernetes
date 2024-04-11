@@ -1,37 +1,26 @@
 'use client'
 import userColumns from "@/app/component/users/modul/columns";
-import { fetchAllUsers } from "@/app/component/users/service/user.service";
-import { getAllUsers } from "@/app/component/users/service/user.slice";
-import { Box } from "@mui/material";
+import { fetchAllUsers,findCountUsers} from "@/app/component/users/service/user.service";
+import { getAllUsers, getCountUser } from "@/app/component/users/service/user.slice";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BorderAll } from "@mui/icons-material";
 import { MyTypography } from "@/app/component/common/module/cell";
 
 const AllusersPage: NextPage = () => {
     const dispatch = useDispatch()
     const allUsers: [] = useSelector(getAllUsers)
-
-    if (allUsers !== undefined) {
-        console.log('allUsers is not undefined')
-
-        console.log('length is ' + allUsers.length)
-        for (let i = 0; i < allUsers.length; i++) {
-            console.log(JSON.stringify(allUsers[i]))
-        }
-    } else {
-        console.log('allUsers is undefined')
-    }
-
+    const countUsers:number = useSelector(getCountUser)
 
     useEffect(() => {
         dispatch(fetchAllUsers(1))
+        dispatch(findCountUsers())
     }, [dispatch])
 
     return (<>
-        {MyTypography('ALL Users : '+allUsers.length,"1.5rem")}
+        {MyTypography('ALL Users (length) : '+allUsers.length,"1.5rem")}
+        {MyTypography('ALL Users (count) : '+countUsers,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%" }}>
             {allUsers && <DataGrid// 🔥 4

@@ -46,9 +46,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Messenger modify(BoardDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    public Messenger modify(BoardDto dto) {
+        entityToDto((repo.save(dtoToEntity(dto))));
+        return Messenger.builder()
+                .message("modify succes")
+                .build();
     }
 
     @Override

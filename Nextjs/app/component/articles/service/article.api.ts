@@ -32,7 +32,7 @@ export const findArticlesAPI = async (id: number) => {
 export const countArticlesAPI = async () => {
     try {
         const response = await instance.get('/api/articles/count')
-        console.log("response " + response)
+        console.log("count response " + response.data)
         return response.data
     } catch (error) {
         console.log(error + " countArticlesAPI EERR!!!")
@@ -41,13 +41,13 @@ export const countArticlesAPI = async () => {
 
 }
 
-export const modifyArticlesAPI = async (props: {}) => {
+export const modifyArticlesAPI = async (props: IArticle) => {
     try {
         const response = await instance.put('/api/articles/modify',props)
         console.log("response " + JSON.stringify(response.data))
         return response.data
     } catch (error) {
-        console.log(error + " findArticlesAPI EERR!!!")
+        console.log(error + " modifyArticlesAPI EERR!!!")
         return error
     }
 

@@ -37,10 +37,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger deleteById(Long id) {
-        repo.deleteById(id);
-        return Messenger.builder()
-                .message("delete succes")
+        Messenger msg = Messenger.builder()
+                .message("delete fail")
                 .build();
+
+        if (repo.existsById(id)) {
+            // repo.deleteById(id);
+            msg = Messenger.builder()
+                    .message("delete succes")
+                    .build();
+        }
+
+        return msg;
     }
 
     @Override
@@ -53,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findById(Long id) {
-        return repo.findById(id).map(i->entityToDto(i));
+        return repo.findById(id).map(i -> entityToDto(i));
     }
 
     @Override
@@ -68,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findUsersByName(String name) {
-        return repo.findUsersByName(name);
+        return repo.findUsersByName(name);  
     }
 
     @Override

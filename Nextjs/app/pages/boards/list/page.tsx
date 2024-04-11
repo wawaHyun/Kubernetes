@@ -1,8 +1,8 @@
 'use client'
 
 import boardColumns from "@/app/component/boards/modul/columns";
-import { fetchAllBoards } from "@/app/component/boards/service/board.service";
-import { getAllBoards } from "@/app/component/boards/service/board.slice";
+import { fetchAllBoards, findcountBoard} from "@/app/component/boards/service/board.service";
+import { getAllBoards,getCountBoard } from "@/app/component/boards/service/board.slice";
 import { MyTypography } from "@/app/component/common/module/cell";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const AllboardsPage: NextPage = () => {
     const dispatch = useDispatch()
     const allBoards: [] = useSelector(getAllBoards)
+    const countBoards:number = useSelector(getCountBoard)
 
     if (allBoards !== undefined) {
         console.log('allBoards is not undefined')
@@ -28,10 +29,12 @@ const AllboardsPage: NextPage = () => {
 
     useEffect(() => {
         dispatch(fetchAllBoards(1))
+        dispatch(findcountBoard())
     }, [dispatch])
 
     return (<>
-        {MyTypography('ALL Boards : '+allBoards.length,"1.5rem")}
+        {MyTypography('ALL Boards (length) : '+allBoards.length,"1.5rem")}
+        {MyTypography('ALL Boards (count) : '+countBoards,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%" }}>
             {allBoards && <DataGrid// 🔥 4

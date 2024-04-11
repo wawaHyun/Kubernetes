@@ -2,8 +2,8 @@
 
 
 import articleColumns from "@/app/component/articles/modul/columns";
-import { fetchAllArticles } from "@/app/component/articles/service/article.service";
-import { getAllArticles } from "@/app/component/articles/service/article.slice";
+import { fetchAllArticles, findCountArticle } from "@/app/component/articles/service/article.service";
+import { getAllArticles, getcountArticle } from "@/app/component/articles/service/article.slice";
 import { MyTypography } from "@/app/component/common/module/cell";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const AllarticlesPage: NextPage = () => {
     const dispatch = useDispatch()
     const allArticles: [] = useSelector(getAllArticles)
+    const countArticle: number = useSelector(getcountArticle)
 
     if (allArticles !== undefined) {
         console.log('allArticles is not undefined')
@@ -28,10 +29,12 @@ const AllarticlesPage: NextPage = () => {
 
     useEffect(() => {
         dispatch(fetchAllArticles(1))
+        dispatch(findCountArticle())
     }, [dispatch])
 
     return (<>
-        {MyTypography('ALL Articles '+allArticles.length,"1.5rem")}
+        {MyTypography('ALL Articles(lenght) '+allArticles.length,"1.5rem")}
+        {MyTypography('ALL Articles(count) '+countArticle,"1.5rem")}
 
         <div style={{ height: "100%", width: "100%", fontSize:30}}>
             {allArticles && <DataGrid// 🔥 4

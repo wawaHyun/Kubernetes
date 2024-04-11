@@ -68,8 +68,8 @@ public class BoardController {
 
     }
 
-    @GetMapping("/exist")
-    public boolean existsById(Long id) {
+    @GetMapping("/exist/{id}")
+    public boolean existsById(@PathVariable Long id) {
         return ser.existsById(id);
     }
 

@@ -66,8 +66,8 @@ public class ArticleController {
 
     }
 
-    @GetMapping("/exist")
-    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
+    @GetMapping("/exist/{id}")
+    public ResponseEntity<Boolean> existsById(@PathVariable Long id) {
         return ResponseEntity.ok(ser.existsById(id));
     }
 

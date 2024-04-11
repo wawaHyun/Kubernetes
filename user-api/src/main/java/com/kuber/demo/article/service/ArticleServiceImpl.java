@@ -47,6 +47,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Messenger modify(ArticleDto dto) {
         entityToDto((repo.save(dtoToEntity(dto))));
+
+        
         return Messenger.builder()
                 .message("modify succes")
                 .build();
