@@ -13,7 +13,7 @@ spring:
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -22,9 +22,23 @@ spring:
             "[non_contextual_creation]": true
         "[format_sql]": true
     show-sql: true
+    open-in-view : false
 logging:
   level:
     org:
       hibernate:
         SQL: debug
         type: trace
+
+junit:
+  jupiter:
+    execution:
+      parallel:
+        enable: true
+        mode:
+          default: same_thread
+          classes:
+            default: same_thread
+        config:
+          dynamic:
+            factor: 3
