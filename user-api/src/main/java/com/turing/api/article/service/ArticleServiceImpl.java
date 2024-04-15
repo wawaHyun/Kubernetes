@@ -24,7 +24,7 @@ public class ArticleServiceImpl implements ArticleService {
     public Messenger save(ArticleDto article) {
         entityToDto((repo.save(dtoToEntity(article))));
         return Messenger.builder()
-                .message("save succes")
+                .message("SUCCES")
                 .build();
     }
 
@@ -40,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
     public Messenger deleteById(Long id) {
         repo.deleteById(id);
         return Messenger.builder()
-                .message("delete succes")
+                .message("SUCCES")
                 .build();
     }
 
@@ -50,7 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         
         return Messenger.builder()
-                .message("modify succes")
+                .message("SUCCES")
                 .build();
     }
 

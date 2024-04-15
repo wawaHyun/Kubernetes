@@ -1,7 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from './article.init';
-import {deleteArticleById, fetchAllArticles, findArticleById ,findCountArticle,modifyArticleById} from './article.service';
+import {deleteArticleById, fetchAllArticles, findArticleById ,findCountArticle,modifyArticleById, saveArticle} from './article.service';
 
 const articleThunks = [fetchAllArticles]
 
@@ -25,13 +25,15 @@ export const articleSlice = createSlice({
             .addCase(findCountArticle.fulfilled, (state: any, { payload }: any) => { state.count = payload })
             .addCase(modifyArticleById.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(deleteArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload }) 
+            .addCase(saveArticle.fulfilled, (state: any, { payload }: any) => { state.message = payload }) 
     }
 })
 
 
 export const getAllArticles = (state: any) => state.article.array;
 export const getFindArticle = (state: any) => state.article.json;
-export const getcountArticle = (state:any) => state.article.count;
+export const getCountArticle = (state:any) => state.article.count;
+export const getSaveArticle = (state:any) => state.article.message;
 
 export const { } = articleSlice.actions
 

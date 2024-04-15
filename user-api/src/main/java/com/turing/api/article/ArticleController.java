@@ -66,17 +66,16 @@ public class ArticleController {
 
     }
 
-    @GetMapping("/exist/{id}")
-    public ResponseEntity<Boolean> existsById(@PathVariable Long id) {
+    @GetMapping("/exist")
+    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
         return ResponseEntity.ok(ser.existsById(id));
     }
 
     // ----------------------------추가_methode------------------------
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<List<ArticleDto>> findArticlesByTitle(@RequestBody ArticleDto param) {
-        // log.info("입력받은 정보 : {}", name );
-        
+        log.info("입력받은 정보 : {}", param.getTitle());
         return ResponseEntity.ok(ser.findArticlesByTitle(param.getTitle()));
     }
 

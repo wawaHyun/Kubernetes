@@ -37,9 +37,9 @@ export const countUsersAPI = async () => {
     }
 }
 
-export const modifyUserByIdAPI = async (params:IUser) => {
+export const modifyUserByIdAPI = async (params: IUser) => {
     try {
-        const response = await instance.put('/api/users/modify',params)
+        const response = await instance.put('/api/users/modify', params)
         console.log("response ", JSON.stringify(response.data))
         return response.data
     } catch (error) {
@@ -57,6 +57,28 @@ export const deleteUserByIdAPI = async (props: IUser) => {
         return response.data
     } catch (error) {
         console.log(error, " deleteUserByIdAPI EERR!!!")
+        return error
+    }
+}
+
+export const loginUserAPI = async (props: any) => {
+    try {
+        const response = await instance.post('/api/users/login', props)
+        console.log("response ", JSON.stringify(response.data.message))
+        return response.data.message
+    } catch (error) {
+        console.log(error, " loginUserByIdAPI EERR!!!")
+        return error
+    }
+}
+
+export const joinUserAPI = async (props: any) => {
+    try {
+        const response = await instance.post('/api/users/save', props)
+        console.log("response ", JSON.stringify(response.data.message))
+        return response.data.message
+    } catch (error) {
+        console.log(error, " joinUserAPI EERR!!!")
         return error
     }
 }

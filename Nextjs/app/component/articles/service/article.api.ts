@@ -67,3 +67,14 @@ export const deleteArticlesAPI = async (id: number) => {
     }
 
 }
+
+export const saveArticleAPI = async (props: any) => {
+    try {
+        const response = await instance.post('/api/articles/save', props)
+        console.log("response ", JSON.stringify(response.data.message))
+        return response.data.message
+    } catch (error) {
+        console.log(error, " saveArticleAPI EERR!!!")
+        return error
+    }
+}

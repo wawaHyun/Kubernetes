@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { initialState } from "./user.inti"
-import { deleteUserById, fetchAllUsers, findUserById, modifyUserById, findCountUsers } from "./user.service"
+import { deleteUserById, fetchAllUsers, findUserById, modifyUserById, findCountUsers, loginUser, joinUser} from "./user.service"
 
 const userThunks = [fetchAllUsers]
 
@@ -23,12 +23,15 @@ export const userSlice = createSlice({
             .addCase(findCountUsers.fulfilled, (state: any, { payload }: any) => { state.count = payload })
             .addCase(modifyUserById.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(deleteUserById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.message = payload })
+            .addCase(joinUser.fulfilled, (state: any, { payload }: any) => { state.message = payload })
     }
 })
 
 export const getAllUsers = (state: any) => state.user.array;
 export const getFindUser = (state: any) => state.user.json;
 export const getCountUser = (state: any) => state.user.count;
+export const getLogin = (state: any) =>state.user.message;
 
 export const { } = userSlice.actions
 

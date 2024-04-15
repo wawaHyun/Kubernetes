@@ -8,7 +8,8 @@ interface IArticle {
     modDate?: string,
     regDate?: string,
     array: IArticle[],
-    json: {}
+    json: {},
+    message : string
 
 
 }

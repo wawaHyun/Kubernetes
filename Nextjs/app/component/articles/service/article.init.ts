@@ -8,7 +8,7 @@ export const initialState: IArticle = {
     modDate: '',
     regDate: '',
     array: [],
-    json: {}
-
+    json: {},
+    message : ''
 
 }

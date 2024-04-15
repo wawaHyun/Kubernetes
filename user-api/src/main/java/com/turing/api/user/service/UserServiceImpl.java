@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public Messenger save(UserDto user) {
         entityToDto((repo.save(dtoToEntity(user))));
         return Messenger.builder()
-                .message("Success")
+                .message("SUCCESS")
                 .build();
     }
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     public Messenger deleteById(Long id) {
         repo.deleteById(id);
         return Messenger.builder()
-                .message((repo.existsById(id)) ? "delete succes" : "delete fail")
+                .message((repo.existsById(id)) ? "SUCCES" : "FAIL")
                 .build();
 
     }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         User ent = repo.save(dtoToEntity(dto));
 
         return Messenger.builder()
-                .message((ent instanceof User) ? "modify succes" : "modify fail")
+                .message((ent instanceof User) ? "SUCCES" : "FAIL")
                 .build();
     }
 
@@ -77,15 +77,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findUsersByJob(String job) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
+        return null;
     }
 
     @Override
-    public Messenger login(UserDto param) {
+    public Messenger login(UserDto dto) {
+        log.info("login {}", dto.getUsername());
         return Messenger.builder()
-                .message("login success")
+                // .get() : Optional 때문에 사용. 무조건 get하겠다는 의미
+                .message(findUsersByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword())
+                        ? "SUCCESS" : "FAIL")
                 .build();
+    }
+
+    @Override
+    public Optional<UserDto> findUsersByUsername(String username) {
+        Optional<User> user = repo.findUsersByUsername(username);
+        // log.info("findUsersByUsername {}", user);
+        return Optional.of(entityToDto(user.get()));
     }
 
 }

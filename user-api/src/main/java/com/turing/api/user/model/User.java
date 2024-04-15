@@ -31,7 +31,7 @@ public class User extends BaseEntity {
 
     private String job;
 
-    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
     private List<Article> article;
 
     @Builder(builderClassName = "builder")

@@ -1,5 +1,4 @@
 import axios from "axios"
-import { env } from "process"
 
 export default function AxiosConfig() {
     return {

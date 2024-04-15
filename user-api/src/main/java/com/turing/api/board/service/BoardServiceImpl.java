@@ -69,8 +69,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDto> findBoardsByName(String name) {
-        return null;
+    public List<BoardDto> findBoardsByBoardName(String name) {
+        return repo.findBoardsByBoardName(name);
     }
 
 }

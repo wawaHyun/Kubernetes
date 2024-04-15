@@ -3,12 +3,25 @@
 import boardColumns from "@/app/component/boards/modul/columns";
 import { fetchAllBoards, findcountBoard} from "@/app/component/boards/service/board.service";
 import { getAllBoards,getCountBoard } from "@/app/component/boards/service/board.slice";
+import { PG } from "@/app/component/common/enums/PG";
 import { MyTypography } from "@/app/component/common/module/cell";
-import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+
+const cards = [
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/mountain-nightview.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/autumn.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/babypinetree.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/beach.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/purpleflowers.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/starrysky.jpg",
+    "https://www.tailwindtap.com/assets/components/horizontal-carousel/lake.jpg",
+  ];
+
 
 const AllboardsPage: NextPage = () => {
     const dispatch = useDispatch()
@@ -36,7 +49,26 @@ const AllboardsPage: NextPage = () => {
         {MyTypography('ALL Boards (length) : '+allBoards.length,"1.5rem")}
         {MyTypography('ALL Boards (count) : '+countBoards,"1.5rem")}
 
-        <div style={{ height: "100%", width: "100%" }}>
+        <div className="flex flex-col items-center justify-center w-full bg-300">
+        <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
+          {cards.map((data, index) => {
+            return (
+              <section
+                className="flex-shrink-0 w-full snap-center justify-center items-center"
+                key={index}
+              >
+                <img
+                  src={data}
+                  alt="Images to scroll horizontal"
+                  className="w-full h-[500px]"
+                />
+              </section>
+            );
+          })}
+        </div>
+      </div>
+
+      <div style={{ height: "100%", width: "100%" }}>
             {allBoards && <DataGrid// 🔥 4
                 rows={allBoards}
                 columns={boardColumns()}
@@ -44,6 +76,8 @@ const AllboardsPage: NextPage = () => {
                 checkboxSelection
             />}
         </div>
+
+
     </>)
 }
 

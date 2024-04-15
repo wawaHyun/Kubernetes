@@ -9,7 +9,7 @@ import com.turing.api.common.service.QueryService;
 
 public interface BoardService extends CommandService<BoardDto>, QueryService<BoardDto> {
 
-    List<BoardDto> findBoardsByName(String name);
+    List<BoardDto> findBoardsByBoardName(String name);
 
     default Board dtoToEntity(BoardDto dto) {
         return Board.builder()

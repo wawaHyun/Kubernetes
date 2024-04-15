@@ -14,6 +14,7 @@ import com.turing.api.article.model.Article;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 public class UserDto {
     private Long id;

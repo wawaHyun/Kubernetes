@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 
 
-const pages = ['회원가입', '로그인', '카운터', 'article list', 'board list', 'user list'];
+const pages = ['카운터', 'article list', 'board list', 'user list'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
@@ -38,9 +38,7 @@ function Header() {
     // alert('클릭한 메뉴 : ' + event.target.innerText)
 
     switch (event.target.innerText) {
-      case 'Home': router.push(`../../`); break;
-      case '회원가입': router.push(`${PG.USER}/join`); break;
-      case '로그인': router.push(`${PG.USER}/login`); break;
+      case 'Home': router.push(`/`); break;
       case '카운터': router.push(`${PG.DEMO}/counter`); break;
       case 'ARTICLE LIST': router.push(`${PG.ARTICLE}/list`); break;
       case 'BOARD LIST': router.push(`${PG.BOARD}/list`); break;

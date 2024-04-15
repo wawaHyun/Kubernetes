@@ -11,4 +11,6 @@ import com.turing.api.board.model.BoardDto;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
+    List<BoardDto> findBoardsByBoardName(String name);
+
 }

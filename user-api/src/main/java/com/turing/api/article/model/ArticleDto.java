@@ -22,4 +22,5 @@ public class ArticleDto {
     private String modDate;
     private String regDate;
 
+    
 }

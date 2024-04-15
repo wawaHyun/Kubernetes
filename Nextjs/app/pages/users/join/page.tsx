@@ -1,50 +1,45 @@
 'use client';
 
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AxiosConfig from "@/app/component/common/configs/axios-config";
-import { API } from "@/app/component/common/enums/API";
-import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next";
+import { IUser } from "@/app/component/users/model/user.model";
+import { useDispatch } from "react-redux";
+import { joinUser } from "@/app/component/users/service/user.service";
+import { PG } from "@/app/component/common/enums/PG";
+import { useSelector } from "react-redux";
+import { getLogin } from "@/app/component/users/service/user.slice";
 
 const Join: NextPage = () => {
 
   const router = useRouter();
 
-  const [username, setusername] = useState('')
-  const [password, setpassword] = useState('')
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [job, setJob] = useState('')
+  const dispatch = useDispatch();
+  const join = useSelector(getLogin);
+  const [user, setUser] = useState({} as IUser)
+
 
   const handleUsername = (e: any) => {
-    setusername(e.target.value);
-  }
-  const handlePassword = (e: any) => {
-    setpassword(e.target.value);
-  }
-  const handleName = (e: any) => {
-    setName(e.target.value);
-  }
-  const handlePhone = (e: any) => {
-    setPhone(e.target.value);
-  }
-  const handleJob = (e: any) => {
-    setJob(e.target.value);
+    const {
+      target: { value, name }
+    } = e;
+    setUser(dto => ({ ...dto, [name]: value }));
   }
 
   const handleSubmit = () => {
-
-    axios.post(`${API.SERVER}/api/users/save`, { username, password, name, phone, job }
-      , AxiosConfig())
-      .then(res => {
-        alert(JSON.stringify(res.data))
-        router.push(`${PG.USER}/login`)
-      })
+    console.log(user)
+    dispatch(joinUser(user))
   }
+
+  useEffect(() => {
+    if (join === 'SUCCESS') {
+      router.push(`${PG.USER}/login`)
+    } 
+  }, [join])
+
   const handleCancel = () => {
-    alert('Ok, back to main..');
+    alert('back to the login..');
+    router.push(`/`)
   }
 
 
@@ -57,19 +52,19 @@ const Join: NextPage = () => {
       <hr />   <br />
 
       <label htmlFor="memId"><b>ID</b></label><br />
-      <input type="text" placeholder="Enter ID" name="id" onChange={handleUsername} required />
+      <input type="text" placeholder="Enter ID" name="username" onChange={handleUsername} required />
       <br /><br />
       <label htmlFor="memPw"><b>Password</b></label><br />
-      <input type="password" placeholder="Enter Password" name="memPw" onChange={handlePassword} required />
+      <input type="password" placeholder="Enter Password" name="password" onChange={handleUsername} required />
       <br /><br />
       <label htmlFor="name"><b>NAME</b></label><br />
-      <input type="text" placeholder="Enter name" name="name" onChange={handleName} required />
+      <input type="text" placeholder="Enter name" name="name" onChange={handleUsername} required />
       <br /><br />
       <label htmlFor="phone"><b>phone</b></label><br />
-      <input type="text" placeholder="Enter phone" name="phone" onChange={handlePhone} required />
+      <input type="text" placeholder="Enter phone" name="phone" onChange={handleUsername} required />
       <br /><br />
       <label htmlFor="job"><b>job</b></label><br />
-      <input type="text" placeholder="Enter job" name="job" onChange={handleJob} />
+      <input type="text" placeholder="Enter job" name="job" onChange={handleUsername} />
       <br /><br />
 
 
@@ -85,6 +80,7 @@ const Join: NextPage = () => {
         <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button><br />
       </div>
     </div>
+
 
   </>)
 }

@@ -25,8 +25,6 @@ const Login: NextPage = () => {
 
 
     const handleSubmit = () => {
-        alert("입력완료")
-
         axios.post(`${API.SERVER}/api/users/login`, { username, password }, AxiosConfig())
             .then(res => {
                 alert(res.data)
@@ -44,6 +42,7 @@ const Login: NextPage = () => {
         <h3>비밀번호를 입력하세요</h3>
         <input type="text" onChange={handlePassword} /><br />
         <button onClick={handleSubmit}>전송</button>
+
 
     </>)
 }

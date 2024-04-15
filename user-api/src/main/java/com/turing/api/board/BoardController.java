@@ -53,7 +53,6 @@ public class BoardController {
         log.info("입력받은 정보 : {}", param);
         return ResponseEntity.ok(ser.modify(param));
     }
-    
 
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam Long id) {
@@ -67,17 +66,17 @@ public class BoardController {
 
     }
 
-    @GetMapping("/exist/{id}")
+    @GetMapping("/exist")
     public boolean existsById(@PathVariable Long id) {
         return ser.existsById(id);
     }
 
     // ----------------------------추가_methode------------------------
 
-    @PostMapping("/search")
-    public ResponseEntity<List<BoardDto>> findBoardsByTitle(@RequestBody BoardDto param) {
-        // log.info("입력받은 정보 : {}", name );
-        return ResponseEntity.ok(ser.findBoardsByName(param.getBoardName()));
+    @GetMapping("/search")
+    public ResponseEntity<List<BoardDto>> findBoardsByBoardName(@RequestBody BoardDto param) {
+        log.info("입력받은 정보 : {}", param.getBoardName());
+        return ResponseEntity.ok(ser.findBoardsByBoardName(param.getBoardName()));
     }
 
 }

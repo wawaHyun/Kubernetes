@@ -9,5 +9,6 @@ export interface IUser {
     modDate?: string,
     regDate?: string,
     array: [],
-    json: {}
+    json: {},
+    message? : string
 }

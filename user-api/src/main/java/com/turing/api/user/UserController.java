@@ -72,26 +72,23 @@ public class UserController {
     }
 
     @GetMapping("/exist")
-    public ResponseEntity<Boolean> existsById(@PathVariable Long id) {
+    public ResponseEntity<Boolean> existsById(@RequestParam Long id) {
+        log.info("입력 : " + id);
         return ResponseEntity.ok(ser.existsById(id));
     }
 
     // ----------------------------추가_methode------------------------
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<List<UserDto>> findUsersByName(@RequestBody UserDto param) {
-        // log.info("입력받은 정보 : {}", name );
+        log.info("입력받은 정보 : {}", param.getName());
         return ResponseEntity.ok(ser.findUsersByName(param.getName()));
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<Messenger> login(@RequestBody UserDto param) {
-
-        log.info("입력받은 정보 : {}", param);
-        return ResponseEntity.ok(ser.login(UserDto.builder()
-                .username(param.getUsername())
-                .password(param.getPassword())
-                .build()));
+        log.info("입력받은 정보 : {}", param.toString());
+        return ResponseEntity.ok(ser.login(param));
     }
 
 }
