@@ -1,20 +1,10 @@
 'use client';
 import { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { PG } from '@/app/component/common/enums/PG';
 import { useRouter } from "next/navigation";
+import HomeIcon from '@mui/icons-material/Home';
 
 
 
@@ -35,14 +25,14 @@ function Header() {
   const router = useRouter();
 
   const handleCloseNavMenu = (event: any) => {
-    alert('클릭한 메뉴 : ' + event.target.innerText)
+    // alert('클릭한 메뉴 : ' + event.target.innerText)
 
     switch (event.target.innerText) {
       case 'Home': router.push(`/`); break;
-      case '카운터': router.push(`${PG.DEMO}/counter`); break;
-      case 'ARTICLE LIST': router.push(`${PG.ARTICLE}/list`); break;
-      case 'BOARD LIST': router.push(`${PG.BOARD}/list`); break;
-      case 'USER LIST': router.push(`${PG.USER}/list`); break;
+      case 'counter': router.push(`${PG.DEMO}/counter`); break;
+      case 'article list': router.push(`${PG.ARTICLE}/list`); break;
+      case 'board list': router.push(`${PG.BOARD}/list`); break;
+      case 'user list': router.push(`${PG.USER}/list`); break;
     }
 
   };
@@ -54,9 +44,8 @@ function Header() {
   return (
 
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 " >
+        <HomeIcon fontSize="large" onClick={() => router.push(`/`)} />
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <span className="sr-only">Open user menu</span>
