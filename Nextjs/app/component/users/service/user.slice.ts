@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { initialState } from "./user.inti"
-import { deleteUserById, fetchAllUsers, findUserById, modifyUserById, findCountUsers, loginUser, joinUser} from "./user.service"
+import { deleteUserById, fetchAllUsers, findUserById, modifyUserById, findCountUsers, loginUser, joinUser } from "./user.service"
+import { IUser } from "../model/user.model"
 
 const userThunks = [fetchAllUsers]
 
@@ -9,6 +9,24 @@ const status = {
     fulfilled: 'fulfilled',
     rejected: 'rejected'
 }
+
+interface IAuth{
+    message? : string,
+    token? : string
+}
+
+interface userState {
+    array? : Array<IUser>,
+    json? : IUser,
+    auth? : IAuth
+}
+
+export const initialState:userState = {
+    array : [],
+    json : {} as IUser,
+    auth : {} as IAuth
+}
+
 
 
 export const userSlice = createSlice({
@@ -23,15 +41,15 @@ export const userSlice = createSlice({
             .addCase(findCountUsers.fulfilled, (state: any, { payload }: any) => { state.count = payload })
             .addCase(modifyUserById.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(deleteUserById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.message = payload })
-            .addCase(joinUser.fulfilled, (state: any, { payload }: any) => { state.message = payload })
+            .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.auth = payload })
+            .addCase(joinUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 
 export const getAllUsers = (state: any) => state.user.array;
 export const getFindUser = (state: any) => state.user.json;
 export const getCountUser = (state: any) => state.user.count;
-export const getLogin = (state: any) =>state.user.message;
+export const getAuth = (state: any) => state.user.auth;
 
 export const { } = userSlice.actions
 

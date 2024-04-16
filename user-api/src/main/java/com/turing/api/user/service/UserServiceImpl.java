@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.el.stream.Stream;
 import org.springframework.stereotype.Service;
 
+import com.turing.api.common.component.JwtProvider;
 import com.turing.api.common.component.Messenger;
 import com.turing.api.user.model.UserDto;
 import com.turing.api.user.model.User;
@@ -20,6 +21,7 @@ import com.turing.api.user.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repo;
+    private final JwtProvider jwt;
 
     @Override
     public Messenger save(UserDto user) {
@@ -82,11 +84,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Messenger login(UserDto dto) {
-        log.info("login {}", dto.getUsername());
+        boolean flag = repo.findUsersByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword());
+
         return Messenger.builder()
-                // .get() : Optional 때문에 사용. 무조건 get하겠다는 의미
-                .message(findUsersByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword())
-                        ? "SUCCESS" : "FAIL")
+                .message(flag ? "SUCCESS" : "FAIL")
+                .token(flag ? jwt.createToken(dto) : "NONE")
                 .build();
     }
 

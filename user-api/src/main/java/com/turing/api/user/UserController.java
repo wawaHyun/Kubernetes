@@ -31,7 +31,6 @@ public class UserController {
 
     private final UserService ser;
 
-    // ----------------------------JPA_기본제공_methode------------------------
 
     @SuppressWarnings("static-access")
     @PostMapping("/save") // join
@@ -76,8 +75,6 @@ public class UserController {
         log.info("입력 : " + id);
         return ResponseEntity.ok(ser.existsById(id));
     }
-
-    // ----------------------------추가_methode------------------------
 
     @GetMapping("/search")
     public ResponseEntity<List<UserDto>> findUsersByName(@RequestBody UserDto param) {

@@ -2,18 +2,18 @@
 
 import { deleteArticleById, findArticleById, modifyArticleById } from "@/app/component/articles/service/article.service";
 import { getFindArticle } from "@/app/component/articles/service/article.slice";
-import { MyTypography } from "@/app/component/common/module/cell";
+import { MyTypography } from "@/app/component/common/style/cell";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
-export default function ArticleDetailPage({params}: any) {
+export default function ArticleDetailPage({ params }: any) {
   const dispatch = useDispatch()
   const findArticle = useSelector(getFindArticle)
 
-  const [inputValue,setInputValue] = useState({id:params.id, title:'',content:''});
+  const [inputValue, setInputValue] = useState({ id: params.id, title: '', content: '' });
 
 
-  const handleInput = (e:any) => {
+  const handleInput = (e: any) => {
     const {
       target: { value, name }
     } = e;
@@ -21,9 +21,9 @@ export default function ArticleDetailPage({params}: any) {
   };
 
 
-    const handleModify = () => {
-      dispatch(modifyArticleById(inputValue))
-    }
+  const handleModify = () => {
+    dispatch(modifyArticleById(inputValue))
+  }
 
   const handleDelete = () => {
     dispatch(deleteArticleById(params.id))
@@ -36,10 +36,10 @@ export default function ArticleDetailPage({params}: any) {
   return (<>
     {MyTypography('article detail : ' + params.id, "1.5rem")}
 
-    Title : 
+    Title :
     {MyTypography(<input type="text" name='title' defaultValue={findArticle.title} onChange={handleInput} />, "1.5rem")}
 
-Content :
+    Content :
     {MyTypography(<input type="text" name='content' defaultValue={findArticle.content} onChange={handleInput} />, "1.5rem")}
 
     {MyTypography('등록일 : ' + findArticle.regDate, "1.5rem")}

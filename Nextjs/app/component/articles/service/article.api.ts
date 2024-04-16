@@ -5,7 +5,6 @@ export const AllArticlesAPI = async (page: number) => {
         const response = await instance.get('/api/articles/list', {
             params: { page, limit: 10 } //1page 당 10 게시글
         })
-        console.log("response " + response)
         return response.data
     } catch (error) {
         console.log(error + " AllArticlesAPI EERR!!!")
@@ -59,7 +58,6 @@ export const deleteArticlesAPI = async (id: number) => {
         const response = await instance.delete('/api/articles/delete', {
             params: { id }
         })
-        console.log("response " + response)
         return response.data
     } catch (error) {
         console.log(error + " deleteArticlesAPI EERR!!!")

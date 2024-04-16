@@ -64,8 +64,8 @@ export const deleteUserByIdAPI = async (props: IUser) => {
 export const loginUserAPI = async (props: any) => {
     try {
         const response = await instance.post('/api/users/login', props)
-        console.log("response ", JSON.stringify(response.data.message))
-        return response.data.message
+        console.log("response ", JSON.stringify(response.data))
+        return response.data
     } catch (error) {
         console.log(error, " loginUserByIdAPI EERR!!!")
         return error

@@ -4,11 +4,7 @@ import { IUser } from "../../users/model/user.model";
 
 export const fetchAllArticles: any = createAsyncThunk(
     'articles/fetchAllArticles',
-    async (page: number) => {
-        console.log('fetchAllArticles page : ' + page)
-        const data: any = await AllArticlesAPI(1);
-        return data
-    }
+    async (page: number) =>  await AllArticlesAPI(1)
 )
 
 export const findArticleById: any = createAsyncThunk(

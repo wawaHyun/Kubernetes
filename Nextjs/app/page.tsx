@@ -7,49 +7,57 @@ import { PG } from "./component/common/enums/PG";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { loginUser } from "./component/users/service/user.service";
-import { getLogin } from "./component/users/service/user.slice";
+import { getAuth } from "./component/users/service/user.slice";
 import { useSelector } from "react-redux";
 import { IUser } from "./component/users/model/user.model";
+import nookies, { parseCookies, setCookie } from 'nookies'
+
 const SERVER = 'http://localhost:8080'
 
 export default function Home() {
     const router = useRouter();
 
     const dispatch = useDispatch();
-    const login = useSelector(getLogin);
+    const auth = useSelector(getAuth);
 
-    const [user,setUser] = useState({} as IUser)
+    const [user, setUser] = useState({} as IUser)
 
     const handleUsername = (e: any) => {
         setUser({
             ...user,
-            username:e.target.value})
+            username: e.target.value
+        })
     }
 
     const handlePassword = (e: any) => {
         setUser({
             ...user,
-            password:e.target.value})
+            password: e.target.value
+        })
     }
 
     const handleSubmit = () => {
-        console.log('login insert : '+JSON.stringify(user))
+        console.log('login insert : ' + JSON.stringify(user))
         dispatch(loginUser(user))
     }
 
-    useEffect(()=>{
-        if(login==='SUCCESS'){
+    useEffect(() => {
+        if (auth.message === 'SUCCESS') {
+            setCookie({}, 'message', auth.message, { httpOnly: false, path: '/' })
+            setCookie({}, 'token', auth.token, { httpOnly: false, path: '/' })
+            console.log("서버에서 넘어온 message " + parseCookies().message)
+            console.log("서버에서 넘어온 token " + parseCookies().token)
             router.push(`${PG.ARTICLE}/list`)
         }
-        if(login==='FAIL'){
+        if (auth.message === 'FAIL') {
             alert("다시 시도하세요")
             router.push(`/`)
         }
-    },[login])
+    }, [auth])
 
 
     return <>
-        <div className='text-center'>
+        {/* <div className='text-center'>
             <h1><b>welcom to react world</b></h1> <br />
             <Link href={`${PG.USER}/login`}> login </Link><br /><br />
             <Link href={`${PG.DEMO}/mui-demo`}>mui demo</Link><br /><br />
@@ -60,7 +68,7 @@ export default function Home() {
             <Link href={`${PG.ARTICLE}/list`}>ALL Article</Link><br /><br />
             <Link href={`${PG.DEMO}/counter`}>counter demo</Link><br /><br />
             <Link href={`${PG.DEMO}/redux-counter`}> redux counter demo</Link><br /><br />
-        </div>
+        </div> */}
 
 
         <div className="flex items-center justify-center w-full px-5 sm:px-0">
@@ -80,7 +88,7 @@ export default function Home() {
                         </label>
                         <input
                             className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-                            type="email" onChange={handleUsername} 
+                            type="email" onChange={handleUsername}
                             required
                         />
                     </div>

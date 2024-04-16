@@ -4,7 +4,7 @@ import { AttachFile, FmdGood, ThumbUpAlt } from '@mui/icons-material';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import { MyTypography } from '@/app/component/common/module/cell';
+import { MyTypography } from '@/app/component/common/style/cell';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -31,8 +31,8 @@ export default function ArticleSave() {
   const handleSubmit = () => {
     console.log(saveArti)
     dispatch(saveArticle(saveArti))
+    router.push(`${PG.ARTICLE}/list`)
   }
-
 
   const handelCancel = (e: any) => {
     router.push(`${PG.ARTICLE}/list`)
@@ -71,9 +71,9 @@ export default function ArticleSave() {
         <div className="btn  overflow-hidden relative w-30 bg-white text-blue-500 p-3 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full 
         before:bg-pink-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-200 hover:before:animate-ping transition-all duration-00"
           onClick={handelCancel}>Cancel</div>
-        <div className="btn  overflow-hidden relative w-30 bg-blue-500 text-white p-3 px-4 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full 
+        <div className="btn  overflow-hidden relative w-30 bg-blue-500 text-white p-3 px-8 rounded-xl font-bold uppercase -- before:block before:absolute before:h-full before:w-1/2 before:rounded-full 
         before:bg-pink-400 before:top-0 before:left-1/4 before:transition-transform before:opacity-0 before:hover:opacity-100 hover:text-200 hover:before:animate-ping transition-all duration-00"
-          onClick={handleSubmit}>Post</div>
+          onClick={handleSubmit}> Post </div>
       </div>
     </div>
   )

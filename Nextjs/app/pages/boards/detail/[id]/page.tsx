@@ -2,7 +2,7 @@
 
 import { deleteBoardById, findBoardById, modifyBoardById } from "@/app/component/boards/service/board.service";
 import { getFindBoard } from "@/app/component/boards/service/board.slice";
-import { MyTypography } from "@/app/component/common/module/cell";
+import { MyTypography } from "@/app/component/common/style/cell";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
