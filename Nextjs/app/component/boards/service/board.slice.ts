@@ -31,7 +31,7 @@ export const boardSlice = createSlice({
 
 // getter
 export const getAllBoards = (state: any) => state.board.array;
-export const getFindBoard = (state: any) =>state.board.json;
+export const getSingleBoard = (state: any) =>state.board.json;
 export const getCountBoard = (state: any) =>state.board.count;
 
 export const { } = boardSlice.actions

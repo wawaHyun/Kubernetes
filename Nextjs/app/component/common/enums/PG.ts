@@ -1,6 +1,9 @@
 export const enum PG {
     USER = '/pages/users',
-    DEMO = '/pages/demos',
+    SHOP = '/pages/shops',
+    MARKET = '/pages/markets',
+    CLUB = '/pages/clubs',
+
     BOARD = '/pages/boards',
-    ARTICLE = '/pages/articles'
+    ARTICLE = '/pages/article'
 }

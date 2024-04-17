@@ -1,7 +1,6 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from './article.init';
-import {deleteArticleById, fetchAllArticles, findArticleById ,findCountArticle,modifyArticleById, saveArticle} from './article.service';
+import { deleteArticleById, fetchAllArticles, findArticleById ,findByBoard,findCountArticle,modifyArticleById, saveArticle} from './article.service';
 
 const articleThunks = [fetchAllArticles]
 
@@ -9,6 +8,18 @@ const status = {
     pending: 'pending',
     fulfilled: 'fulfilled',
     rejected: 'rejected'
+}
+
+interface articleState {
+    message? : string,
+    json? : IArticle,
+    array? : Array<IArticle>
+}
+
+export const initialState:articleState = {
+    message : '',
+    json : {} as IArticle,
+    array : []
 }
 
 
@@ -26,6 +37,7 @@ export const articleSlice = createSlice({
             .addCase(modifyArticleById.fulfilled, (state: any, { payload }: any) => { state.array = payload })
             .addCase(deleteArticleById.fulfilled, (state: any, { payload }: any) => { state.json = payload }) 
             .addCase(saveArticle.fulfilled, (state: any, { payload }: any) => { state.message = payload }) 
+            .addCase(findByBoard.fulfilled, (state: any, { payload }: any) => { state.array = payload }) 
     }
 })
 

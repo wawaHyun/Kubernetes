@@ -2,8 +2,10 @@
 
 
 import articleColumns from "@/app/component/articles/modul/columns";
-import { fetchAllArticles, findCountArticle } from "@/app/component/articles/service/article.service";
+import { findByBoard, findCountArticle } from "@/app/component/articles/service/article.service";
 import { getAllArticles, getCountArticle } from "@/app/component/articles/service/article.slice";
+import { findBoardById } from "@/app/component/boards/service/board.service";
+import { getSingleBoard } from "@/app/component/boards/service/board.slice";
 import { PG } from "@/app/component/common/enums/PG";
 import { MyTypography } from "@/app/component/common/style/cell";
 import { DataGrid } from "@mui/x-data-grid";
@@ -11,6 +13,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 
 
 const cards = [
@@ -21,17 +24,18 @@ const cards = [
     "https://www.tailwindtap.com/assets/components/horizontal-carousel/purpleflowers.jpg",
     "https://www.tailwindtap.com/assets/components/horizontal-carousel/starrysky.jpg",
     "https://www.tailwindtap.com/assets/components/horizontal-carousel/lake.jpg",
-  ];
-  
+];
 
-const AllarticlesPage: NextPage = () => {
+
+const AllarticlesPage: NextPage = ({ params }: any) => {
     const dispatch = useDispatch()
     const allArticles: [] = useSelector(getAllArticles)
     const countArticle: number = useSelector(getCountArticle)
+    const board:IBoard =useSelector(getSingleBoard)
+
     const router = useRouter();
 
     if (allArticles !== undefined) {
-        console.log('allArticles is not undefined')
         console.log('length is ' + allArticles.length)
         // for (let i = 0; i < allArticles.length; i++) {
         //     console.log(JSON.stringify(allArticles[i]))
@@ -42,14 +46,12 @@ const AllarticlesPage: NextPage = () => {
 
 
     useEffect(() => {
-        dispatch(fetchAllArticles(1))
+        dispatch(findByBoard(params.id))
         dispatch(findCountArticle())
+        dispatch(findBoardById(params.id))
     }, [dispatch])
 
     return (<>
-        {MyTypography('ALL Articles(lenght) ' + allArticles.length, "1.5rem")}
-        {MyTypography('ALL Articles(count) ' + countArticle, "1.5rem")}
-        <br />
 
         <div className="flex flex-col items-center justify-center w-full bg-300">
             <div className="flex overflow-x-scroll snap-x snap-mandatory max-w-6xl no-scrollbar">
@@ -69,7 +71,9 @@ const AllarticlesPage: NextPage = () => {
                 })}
             </div>
         </div>
+        
 
+{MyTypography(' length is '+allArticles.length,"1.5rem")}
 
         <div className='text-center'>
             <br />

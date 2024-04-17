@@ -47,7 +47,7 @@ export default function Home() {
             setCookie({}, 'token', auth.token, { httpOnly: false, path: '/' })
             console.log("서버에서 넘어온 message " + parseCookies().message)
             console.log("서버에서 넘어온 token " + parseCookies().token)
-            router.push(`${PG.ARTICLE}/list`)
+            router.push(`${PG.BOARD}/list`)
         }
         if (auth.message === 'FAIL') {
             alert("다시 시도하세요")

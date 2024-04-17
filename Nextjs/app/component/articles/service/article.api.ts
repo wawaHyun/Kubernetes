@@ -76,3 +76,17 @@ export const saveArticleAPI = async (props: any) => {
         return error
     }
 }
+
+export const findByBoardIdAPI = async (id: number) => {
+    try {
+        const response = await instance.get('/api/articles/card', {
+            params: { id }
+        })
+        console.log("response " + response)
+        return response.data
+    } catch (error) {
+        console.log(error + " findByBoardIdAPI EERR!!!")
+        return error
+    }
+
+}
